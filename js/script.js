@@ -2,59 +2,66 @@
 
 //Coded by Daniel (Apples code)
 
+const apples = ["#apple1", "#apple2", "#apple3"];
+
 $(document).ready(function () {
 
-  var ranLeft = Math.floor(Math.random() * 20);
-  var ranTop = Math.floor(Math.random() * 20);
-
-  $("#apple1").css({
-    left: ranLeft + 60 + '%',
-    top: ranTop + 40 + '%'
-  })
-
-  ranLeft = Math.floor(Math.random() * 20);
-  ranTop = Math.floor(Math.random() * 20);
-
-  $("#apple2").css({
-    left: ranLeft + 60 + '%',
-    top: ranTop + 40 + '%'
-  })
-
-  ranLeft = Math.floor(Math.random() * 20);
-  ranTop = Math.floor(Math.random() * 20);
-
-  $("#apple3").css({
-    left: ranLeft + 60 + '%',
-    top: ranTop + 40 + '%'
-  })
-
-    $("#apple3").css({
-        left: ranLeft + 60 + '%',
-        top: ranTop + 40 + '%'
+  apples.forEach(function(item){
+    var ranLeft = Math.floor(Math.random() * 20);
+    var ranTop = Math.floor(Math.random() * 20);
+    $(item).css({
+      left: ranLeft + 60 + '%',
+      top: ranTop + 40 + '%',
+      'z-index': '2'
     })
-
+  });
+  
 })
 
+function rotateApple(apple){
+  $(apple).css('transform', 'rotate(20deg)')
+  setTimeout(function(){
+    $(apple).css('transform', 'rotate(-20deg)')
+  },200)
+  setTimeout(function(){
+    $(apple).css('transform', 'rotate(20deg)')
+  },400)
+  setTimeout(function(){
+    $(apple).css('transform', 'rotate(20deg)')
+  },600)
+}
 
-$("#apple1").click(function(event){
-    $(this).animate({
-        top: $(".basket").position().top + 20 + 'px',
-        left: $(".basket").position().left
+$("#apple1").click(function(){
+  rotateApple("#apple1"); 
+  setTimeout(function(){
+    $("#apple1").animate({
+      top: $(".basket").position().top + 150 + 'px',
+      left: $(".basket").position().left + 40 + 'px',
     })
+    $("#apple1").css('transform', 'rotate(0deg)')
+  }, 600)
 })
 
-$("#apple2").click(function(event){
-    $(this).animate({
-        top: $(".basket").position().top,
-        left: $(".basket").position().left + 20 + 'px'
+$("#apple2").click(function(){
+  rotateApple("#apple2");
+  setTimeout(function(){
+    $("#apple2").animate({
+      top: $(".basket").position().top + 140 + 'px',
+      left: $(".basket").position().left + 60 + 'px'
     })
+    $("#apple2").css('transform', 'rotate(0deg)')
+  }, 600)
 })
 
-$("#apple3").click(function(event){
-    $(this).animate({
-        top: $(".basket").position().top + 10 + 'px',
-        left: $(".basket").position().left + 50 + 'px'
+$("#apple3").click(function(){
+  rotateApple("#apple3");
+  setTimeout(function(){
+    $("#apple3").animate({
+      top: $(".basket").position().top + 160 + 'px',
+      left: $(".basket").position().left + 80 + 'px'
     })
+    $("#apple3").css('transform', 'rotate(0deg)')
+  }, 600)
 })
 
 //Coded by Tadeas
