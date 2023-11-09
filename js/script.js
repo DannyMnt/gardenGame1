@@ -1,6 +1,7 @@
 //MAKE THE MAGIC HAPPEN
 
-//Coded by Daniel
+//Coded by Daniel (Apples code)
+
 
 
 //Coded by Tadeas
