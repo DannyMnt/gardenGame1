@@ -27,7 +27,32 @@ $(document).ready(function(){
 });
 
 //Coded by Luca
-$
+$(document).ready(function () {
+  $(".waterdrop").hide();
+  $('#wateringcan').click(function () {
+      $(this).css('transform', 'rotate(-45deg)');
+      $(".waterdrop").show();
+  
+  
+
+      const screenWidth = 50;
+      const screenHeight = 50;
+
+const randomLeft = Math.floor(Math.random() * screenWidth);
+const randomTop = Math.floor(Math.random() * screenHeight);
+
+$(".waterdrop").css({
+  left: randomLeft + 600 +'px',
+  top: randomTop + 550+'px'
+});
+  
+  
+  });
+
+
+
+
+
 
 
 //Coded by Jan
