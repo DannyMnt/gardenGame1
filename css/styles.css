@@ -21,9 +21,6 @@ body {
 .waterdrop {
     width: 20px;
     position: relative;
-
-    top: 20px; /* Set the top position relative to the reference object's top edge */
-   left: 40px;
 }
 
 #net {

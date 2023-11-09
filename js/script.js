@@ -2,26 +2,31 @@
 
 //Coded by Daniel (Apples code)
 
-$(document).ready(function(){
+$(document).ready(function () {
 
-    var ranLeft = Math.floor(Math.random() * 20);
-    var ranTop = Math.floor(Math.random() * 20);
+  var ranLeft = Math.floor(Math.random() * 20);
+  var ranTop = Math.floor(Math.random() * 20);
 
-    $("#apple1").css({
-        left: ranLeft + 60 + '%',
-        top: ranTop + 40 + '%'
-    })
+  $("#apple1").css({
+    left: ranLeft + 60 + '%',
+    top: ranTop + 40 + '%'
+  })
 
-    ranLeft = Math.floor(Math.random() * 20);
-    ranTop = Math.floor(Math.random() * 20);
+  ranLeft = Math.floor(Math.random() * 20);
+  ranTop = Math.floor(Math.random() * 20);
 
-    $("#apple2").css({
-        left: ranLeft + 60 + '%',
-        top: ranTop + 40 + '%'
-    })
+  $("#apple2").css({
+    left: ranLeft + 60 + '%',
+    top: ranTop + 40 + '%'
+  })
 
-    ranLeft = Math.floor(Math.random() * 20);
-    ranTop = Math.floor(Math.random() * 20);
+  ranLeft = Math.floor(Math.random() * 20);
+  ranTop = Math.floor(Math.random() * 20);
+
+  $("#apple3").css({
+    left: ranLeft + 60 + '%',
+    top: ranTop + 40 + '%'
+  })
 
     $("#apple3").css({
         left: ranLeft + 60 + '%',
@@ -83,39 +88,64 @@ $(document).ready(function () {
 //Coded by Luca
 
 $(document).ready(function () {
+  let clickCount = 0;
+
   $(".waterdrop").hide();
+
   $('#wateringcan').click(function () {
+    clickCount++;
+
+    if (clickCount % 2 === 1) {
+
       $(this).css('transform', 'rotate(-45deg)');
       $(".waterdrop").show();
-  
-  
+      if (clickCount < 2)
+        pour($('.waterdrop'));
+    } else {
 
-      const screenWidth = 50;
-      const screenHeight = 50;
+      $(this).css('transform', 'rotate(0deg)');
+      $(".waterdrop").hide();
+      $('#wateringcan').css({
+        top: 60 + "%",
+        left: 40 + "%"
+      });
 
-const randomLeft = Math.floor(Math.random() * 5);
-const randomTop = Math.floor(Math.random() * 5);
-$(".waterdrop").css({
-  
-  left: randomLeft+ $("#wateringcan").css("left"),
-  top: randomLeft+ $("#wateringcan").css("top")
-
-
-});
-
-console.log(randomLeft);
-
+    }
   });
-  console.log($("#wateringcan").css("left"));
-  console.log($("#wateringcan").css("top"));
-  
 
+  function pour(waterdrop) {
+    const wateringcanPosition = $('#wateringcan').position();
+    const startV = wateringcanPosition.top + Math.random() * 20 + 50;
+    const startH = wateringcanPosition.left + Math.random() * 20 - 10;
+    const speed = Math.random() * 1200 + 800;
+    const endV = 1000;
 
+    waterdrop.css({
+      top: startV + 'px',
+      left: startH + 'px',
+      visibility: 'visible'
+    });
 
-
+    $({
+      pos: startV
+    }).animate({
+      pos: endV
+    }, {
+      duration: speed,
+      step: function (now) {
+        waterdrop.css({
+          top: now + 'px'
+        });
+      },
+      complete: function () {
+        waterdrop.css({
+          visibility: 'hidden'
+        });
+        pour(waterdrop);
+      }
+    });
+  }
 });
-
-
 
 
 
