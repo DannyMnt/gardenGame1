@@ -2,7 +2,7 @@
 
 //Coded by Daniel
 
-
+//test
 
 //Coded by Tadeas
 const width = $("window").width();
