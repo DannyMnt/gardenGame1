@@ -2,7 +2,8 @@
 
 //Coded by Daniel (Apples code)
 
-$("#apple1").css
+
+
 
 //Coded by Tadeas
 
@@ -18,7 +19,7 @@ function getRandomInt(max, min) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-const clientWidth = $("window").
+const clientWidth = $("window");
 $(document).ready(function () {
   $("#butterfly").mouseover().animate({
     left: "+=getRandomInt(width-curPosX,-curPosX)",
