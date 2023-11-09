@@ -4,9 +4,11 @@
 
 
 
+
 //Coded by Tadeas
+
 const width = $("window").width();
-const heigth = $("window").heigth();
+const heigth = $("window").height();
 
 let curPosX = $("#butterfly").offset().left;
 let curPosY = $("#butterfly").offset().top;
@@ -21,7 +23,7 @@ const clientWidth = $("window").
 $(document).ready(function(){
     $("#butterfly").mouseover().animate({left:"+=getRandomInt(width-curPosX,-curPosX)",top:"+=getRandomInt(width-curPosY,-curPosY)"},fast);
 
-    $("#butterfly").animate({left:"+=(getRandomInt(30,-30))",top: "+=getRandomInt(30,-30)"},fast)
+    $("#butterfly").animate({left:"+=(getRandomInt(30,-30))",top: "+=getRandomInt(30,-30)"},fast);
 });
 
 //Coded by Luca
