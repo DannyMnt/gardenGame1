@@ -27,7 +27,29 @@ $(document).ready(function(){
         left: ranLeft + 60 + '%',
         top: ranTop + 40 + '%'
     })
-    
+
+})
+
+
+$("#apple1").click(function(event){
+    $(this).animate({
+        top: $(".basket").position().top + 20 + 'px',
+        left: $(".basket").position().left
+    })
+})
+
+$("#apple2").click(function(event){
+    $(this).animate({
+        top: $(".basket").position().top,
+        left: $(".basket").position().left + 20 + 'px'
+    })
+})
+
+$("#apple3").click(function(event){
+    $(this).animate({
+        top: $(".basket").position().top + 10 + 'px',
+        left: $(".basket").position().left + 50 + 'px'
+    })
 })
 
 //Coded by Tadeas
