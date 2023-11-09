@@ -46,17 +46,22 @@ $(document).ready(function () {
       const screenWidth = 50;
       const screenHeight = 50;
 
-const randomLeft = Math.floor(Math.random() * screenWidth);
-const randomTop = Math.floor(Math.random() * screenHeight);
-
+const randomLeft = Math.floor(Math.random() * 5);
+const randomTop = Math.floor(Math.random() * 5);
 $(".waterdrop").css({
-  left: randomLeft + 600 +'px',
-  top: randomTop + 550+'px'
-});
   
-  
-  });
+  left: randomLeft+ $("#wateringcan").css("left"),
+  top: randomLeft+ $("#wateringcan").css("top")
 
+
+});
+
+console.log(randomLeft);
+
+  });
+  console.log($("#wateringcan").css("left"));
+  console.log($("#wateringcan").css("top"));
+  
 
 
 
