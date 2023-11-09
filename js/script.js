@@ -2,8 +2,7 @@
 
 //Coded by Daniel (Apples code)
 
-
-
+$("#apple1").css
 
 //Coded by Tadeas
 
