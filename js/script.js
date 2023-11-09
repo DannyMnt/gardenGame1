@@ -2,8 +2,33 @@
 
 //Coded by Daniel (Apples code)
 
+$(document).ready(function(){
 
+    var ranLeft = Math.floor(Math.random() * 20);
+    var ranTop = Math.floor(Math.random() * 20);
 
+    $("#apple1").css({
+        left: ranLeft + 60 + '%',
+        top: ranTop + 40 + '%'
+    })
+
+    ranLeft = Math.floor(Math.random() * 20);
+    ranTop = Math.floor(Math.random() * 20);
+
+    $("#apple2").css({
+        left: ranLeft + 60 + '%',
+        top: ranTop + 40 + '%'
+    })
+
+    ranLeft = Math.floor(Math.random() * 20);
+    ranTop = Math.floor(Math.random() * 20);
+
+    $("#apple3").css({
+        left: ranLeft + 60 + '%',
+        top: ranTop + 40 + '%'
+    })
+    
+})
 
 //Coded by Tadeas
 
