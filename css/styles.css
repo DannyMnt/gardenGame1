@@ -23,11 +23,10 @@ body {
     position: relative;
 }
 
-#net {
-    height: 600px;
-    width: auto;
+#net-image {
     position: absolute;
-
+    margin: 0;
+    padding: 5px;
 }
 
 .apple {

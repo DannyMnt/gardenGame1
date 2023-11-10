@@ -159,3 +159,58 @@ $(document).ready(function () {
 
 
 //Coded by Jan
+
+$(document).ready(function(){
+  var prevX = 0; // Variable to store the previous x-coordinate
+  var $imgElement = $('#net-image');
+  $(document).keypress(function(event){
+      if(event.key === '1'){
+          $imgElement.attr('src', '../images/net.png');
+      }
+      
+      if(event.key === '2'){
+          $imgElement.attr('src', '../images/chainsaw.png');
+          2221222
+      }
+  })
+
+  $(document.body).on('mousemove', function(e) {
+    $imgElement.css({
+      left: (e.clientX + 5) + 'px',
+      top: (e.clientY - 5) + 'px',
+      width: '10rem'
+    });
+
+    $imgElement.css({'border': '1px solid black'})
+    console.log(e.clientX)
+    // Check if x-coordinate is increasing or decreasing
+    if (e.clientX > prevX) {
+      $imgElement.css({'transform' : 'scaleX(-1)',
+  left:(e.clientX - $imgElement.width() - 15) + "px"
+  }); // No mirroring 
+  } else if (e.clientX < prevX) {
+      $imgElement.css('transform', 'scaleX(1)'); // Mirror horizontally
+    }
+
+    prevX = e.clientX; // Update the previous x-coordinate
+  });
+  // $('#net-image').on('click', function(event) {
+  //     event.stopPropagation();
+  //     $("[id]").click(function() {
+  //         var elementId = $(this).attr("id");
+  //         console.log("Clicked on element with ID: " + elementId);
+  //     });
+  //     // Your click event code for #net-image goes here
+  // });
+  // $("[id]").click(function() {
+  //     var elementId = $(this).attr("id");
+  //     console.log("Clicked on element with ID: " + elementId);
+  // });
+  // $('#wateringcan').click(function(){
+  //     console.log("Clicking on the water can");
+  //     $(this).css('transform', 'rotate(-45deg)');
+  //   });
+});
+
+
+
