@@ -192,6 +192,7 @@ const navSelection = (num) => {
   $("#minecraftNavSelected").css({
     left: temp,
   });
+  $("#net-image").hide();
 };
 
 $(document).ready(function () {
@@ -235,6 +236,7 @@ $(document).ready(function () {
   $(document).keypress(function (event) {
     navSelection(+event.key);
     if (event.key === "1") {
+      $("#net-image").show();
       $imgElement.attr("src", "../images/net.png");
       $imgElement.css({
         width: "10rem",
@@ -245,6 +247,7 @@ $(document).ready(function () {
     }
 
     if (event.key === "2") {
+      $("#net-image").show();
       $imgElement.attr("src", "../images/chainsaw.png");
       $imgElement.css({
         width: "20rem",
