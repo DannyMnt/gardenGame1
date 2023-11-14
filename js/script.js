@@ -156,6 +156,7 @@ $(document).ready(function () {
   }
 });
 
+
 //Coded by Jan
 
 const navSelection = (num) => {
@@ -254,8 +255,16 @@ $(document).ready(function () {
       });
     }
   });
-  // Update the previous x-coordinate
+  if (event.key === "3") {
+    $("#net-image").show();
+    $imgElement.attr("src", "../images/Rifle.png");
+    $imgElement.css({
+      width: "20rem",
+    });
+  }
 });
+  // Update the previous x-coordinate
+3
 // $('#net-image').on('click', function(event) {
 //     event.stopPropagation();
 //     $("[id]").click(function() {

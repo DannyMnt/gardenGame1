@@ -77,6 +77,14 @@ body {
   z-index: 10;
   width: 3rem;
 }
+#inventoryrifle{
+  position: absolute;
+  bottom: 1rem;
+  left: calc(50% - 120px);
+  transform: translate(-50%);
+  z-index: 10;
+  width: 3rem;
+}
 
 body {
   margin: 0px;
