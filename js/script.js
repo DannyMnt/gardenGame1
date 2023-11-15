@@ -292,7 +292,7 @@ $(document).ready(function () {
     navSelection(+event.key);
     if (event.key === "1") {
       $("#net-image").show();
-      $imgElement.attr("src", "../images/net.png");
+      $imgElement.attr("src", "..images/");
       $imgElement.css({
         width: "10rem",
       });
