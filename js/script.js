@@ -162,7 +162,7 @@ $(document).ready(function () {
     if (clickCount % 2 === 1) {
       $(this).css("transform", "rotate(-45deg)");
       $(".waterdrop").show();
-      if (clickCount < 2) pour($(".waterdrop"));
+      pourWaterdrops();
     } else {
       $(this).css("transform", "rotate(0deg)");
       $(".waterdrop").hide();
@@ -172,6 +172,19 @@ $(document).ready(function () {
       });
     }
   });
+
+  var drops = [];
+  for (var i = 0; i < 10; i++) {
+    drops.push($(".waterdrop").eq(i));
+  }
+
+  function pourWaterdrops() {
+    for (let i = 0; i < drops.length; i++) {
+      setTimeout(function () {
+        pour(drops[i]);
+      }, i * 500); // Delay each animation by 500ms
+    }
+  }
 
   function pour(waterdrop) {
     const wateringcanPosition = $("#wateringcan").position();
@@ -209,8 +222,6 @@ $(document).ready(function () {
     );
   }
 });
-
-
 //Coded by Jan
 
 const navSelection = (num) => {
