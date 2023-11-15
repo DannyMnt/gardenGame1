@@ -64,35 +64,89 @@ $("#apple3").click(function () {
 
 //Coded by Tadeas
 
-const width = $("window").width();
-const heigth = $("window").height();
+const butterflyWidth = $("#butterfly").width();
+const butterflyHeight = $("#butterfly").height();
 
-let curPosX = $("#butterfly").offset().left;
-let curPosY = $("#butterfly").offset().top;
 
-function getRandomInt(max, min) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min) + min);
+const movementAmount = 30;
+const movementSpeed = 1000;
+
+let isMoving = true;
+
+function generateNewPos(){
+  var curPosX = $("#butterfly").offset().left;
+  var curPosY = $("#butterfly").offset().top;
+
+  let newPosX = curPosX;
+  let newPosY = curPosY;
+  let movementX = 0;
+  let movementY = 0;
+  while(true){
+    movementX = getRandomIntFromRange(-movementAmount,movementAmount);
+    movementY = getRandomIntFromRange(-movementAmount,movementAmount);
+    
+    if(isInBounds(newPosX + movementX, newPosY + movementY)){
+      break;
+    }
+  }
+  
+    newPosX += movementX;
+  
+    newPosY += movementY;
+  
+  return [newPosX,newPosY];
 }
 
-const clientWidth = $("window");
-$(document).ready(function () {
-  $("#butterfly").mouseover().animate(
-    {
-      left: "+=getRandomInt(width-curPosX,-curPosX)",
-      top: "+=getRandomInt(width-curPosY,-curPosY)",
-    },
-    fast
-  );
+function isInBounds(posX, posY){
+  const documentWidth = $(document).width();
+  const documentHeight = $(document).height();
 
-  $("#butterfly").animate(
-    {
-      left: "+=(getRandomInt(30,-30))",
-      top: "+=getRandomInt(30,-30)",
-    },
-    fast
-  );
+  if (posX < 0 || posX > documentWidth) {
+    return false;
+  }
+
+  if (posY < 0 || posY > documentHeight) {
+    return false;
+  }
+
+  return true;
+}
+
+function moveImg(){
+  if(isMoving){
+    var newPos = generateNewPos();
+
+    $("#butterfly").animate({left: newPos[0], top: newPos[1]},movementSpeed,function(){moveImg();});
+  }
+}
+
+function getRandomIntFromRange(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+$(document).ready(function () {
+  const width = $(document).width() - butterflyWidth;
+  const height = $(document).height() - butterflyHeight;
+  
+
+  moveImg();
+
+  $("#butterfly").mouseover(function(){
+    isMoving = false;
+    let newPosX = getRandomIntFromRange(0,width);
+    let newPosY = getRandomIntFromRange(0,height);
+    
+    $("#butterfly").stop().animate({
+      left: newPosX,
+      top: newPosY,
+    },100);
+  });
+  $("#butterfly").mouseout(function(){
+    isMoving = true;
+    moveImg();
+  })
+  
 });
 
 //Coded by Luca
@@ -254,15 +308,14 @@ $(document).ready(function () {
         width: "20rem",
       });
     }
-    if (event.key === "3") {
-      $("#net-image").show();
-      $imgElement.attr("src", "../images/Crosshair.png");
-      $imgElement.css({
-        width: "5rem",
-      });
-      $(body).style.cursor = "none";
-    }
   });
+  if (event.key === "3") {
+    $("#net-image").show();
+    $imgElement.attr("src", "../images/Rifle.png");
+    $imgElement.css({
+      width: "20rem",
+    });
+  }
 });
   // Update the previous x-coordinate
 3
