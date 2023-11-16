@@ -1,6 +1,13 @@
 html,
 body {
   height: 100%;
+  background-color: #74B3FF;
+}
+
+#clouds{
+  position: absolute;
+  width: 100%;
+  height: 20%;
 }
 
 #butterfly {
@@ -43,14 +50,15 @@ body {
 
 #tree {
   position: fixed;
-  bottom: 20px;
-  left: 50%;
+  bottom: -15%;
+  left: 35%;
+  width: 70%;
 }
 
 .basket {
   width: 200px;
   position: fixed;
-  bottom: 20px;
+  bottom: 100px;
   left: 20%;
 }
 
@@ -76,9 +84,9 @@ body {
   z-index: 10;
   width: 1.3rem;
 }
-#inventoryChainsaw {
+#inventoryAxe {
   position: absolute;
-  bottom: 1rem;
+  bottom: 0.5rem;
   left: calc(50% - 180px);
   transform: translate(-50%);
   z-index: 10;
@@ -93,9 +101,28 @@ body {
   width: 3rem;
 }
 
+#grass{
+  position: absolute;
+  bottom: 0;
+  height: 8%;
+}
+
+#oaklog{
+  position: absolute;
+  height: 8%;
+  bottom: 8%;
+  left: 68%;
+}
+
+.oakleaf{
+  position: absolute;
+  height: 8%;
+  left: 72.5%;
+  bottom: 0%;
+}
+
 body {
   margin: 0px;
-  background-image: url("../images/grass.png");
   background-attachment: fixed;
   background-repeat: repeat-x;
   background-position: bottom;

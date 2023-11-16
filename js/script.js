@@ -1,29 +1,28 @@
 //MAKE THE MAGIC HAPPEN
 
-//Coded by Daniel (Apples code)
+//Coded by Daniel
 
 const apples = ["#apple1", "#apple2", "#apple3"];
 const appleInBasket = [false, false, false];
-const birds = ["#bird1", "#bird2", "#bird3"]
 
 $(document).ready(function () {
-  birds.forEach(function (item) {
-    var ranLeft = Math.floor(Math.random() * 20);
-    var ranTop = Math.floor(Math.random() * 20);
-    $(item).css({
-      left: ranLeft + 60 + "%",
-      top: ranTop + 40 + "%",
-      "z-index": "-1",
-      width: 100 + "px"
-    });
-  });
+  // Clone dirt block until the full screen width is covered
+  const screenWidth = $(window).width();
+  var value = 4;
+  for(var i = 0; i < screenWidth; i += 80){
+    var clone = $("#grass").clone();
+    clone.attr("id", "grass");
+    $("body").append(clone);
+    clone.css("left", value +"%");
+    value += 4;
+  }
 
   apples.forEach(function (item) {
     var ranLeft = Math.floor(Math.random() * 20);
-    var ranTop = Math.floor(Math.random() * 20);
+    var ranTop = Math.floor(Math.random() * 10);
     $(item).css({
       left: ranLeft + 60 + "%",
-      top: ranTop + 40 + "%",
+      top: ranTop + 55 + "%",
       "z-index": "2"
     });
   });
@@ -46,7 +45,7 @@ $("#apple1").click(function () {
   rotateApple("#apple1");
   setTimeout(function () {
     $("#apple1").animate({
-      top: $(".basket").position().top + 150 + "px",
+      top: $(".basket").position().top + 160 + "px",
       left: $(".basket").position().left + 40 + "px",
     });
     $("#apple1").css("transform", "rotate(0deg)");
@@ -58,7 +57,7 @@ $("#apple2").click(function () {
   rotateApple("#apple2");
   setTimeout(function () {
     $("#apple2").animate({
-      top: $(".basket").position().top + 140 + "px",
+      top: $(".basket").position().top + 150 + "px",
       left: $(".basket").position().left + 60 + "px",
     });
     $("#apple2").css("transform", "rotate(0deg)");
@@ -70,7 +69,7 @@ $("#apple3").click(function () {
   rotateApple("#apple3");
   setTimeout(function () {
     $("#apple3").animate({
-      top: $(".basket").position().top + 160 + "px",
+      top: $(".basket").position().top + 170 + "px",
       left: $(".basket").position().left + 80 + "px",
     });
     $("#apple3").css("transform", "rotate(0deg)");
@@ -282,8 +281,8 @@ $(document).ready(function () {
   var $imgElement = $("#net-image");
   $(document.body).on("mousemove", function (e) {
     $imgElement.css({
-      left: e.clientX + 10 + "px",
-      top: e.clientY - 10 + "px",
+      left: e.clientX + 5 + "px",
+      top: e.clientY - 5 + "px",
       "z-index": "3"
     });
     number = 1;
@@ -292,12 +291,12 @@ $(document).ready(function () {
     if (e.clientX > prevX) {
       $imgElement.css({
         transform: "scaleX(-1)",
-        left: e.clientX - $imgElement.width() - 20 + "px",
+        left: e.clientX - $imgElement.width() - 5 + "px",
       }); // No mirroring
     } else if (e.clientX < prevX) {
       $imgElement.css({
         transform: "scaleX(1)",
-        left: e.clientX - $imgElement.width - 20 + "px"
+        left: e.clientX - $imgElement.width - 5 + "px"
       }); // Mirror horizontally
     }
 
@@ -332,12 +331,12 @@ $(document).ready(function () {
 
     if (event.key === "2") {
       $("#net-image").show();
-      $imgElement.attr("src", "../images/chainsaw.png");
+      $imgElement.attr("src", "../images/axe.png");
       $imgElement.css({
-        width: "20rem",
+        width: "5rem",
       });
       $("#tree").click(function(){
-        $(this).hide();
+        $("#tree").hide()
         for(var i = 0; i < 3; i++){
           if(appleInBasket[i] == false){
               $(apples[i]).animate({
@@ -345,33 +344,8 @@ $(document).ready(function () {
             })
           }
         }
-        birds.forEach(function(item){
-          var rand = Math.floor(Math.random() * 90)
-          $(item).animate({
-            top: -10 + "%",
-            left: rand + "%"
-          }, 2000)
-        })
       })
     }
-
-    if (event.key === "3") {
-      $("#net-image").show();
-      $imgElement.attr("src", "../images/crosshair.png");
-      $imgElement.css({
-        width: "5rem",
-      });
-      $imgElement.css("z-index", "3");
-    }
-    $("#bird1").click(function(){
-      $("#bird1").hide();
-    })
-    $("#bird2").click(function(){
-      $("#bird2").hide();
-    })
-    $("#bird3").click(function(){
-      $("#bird3").hide();
-    })
   });
 });
   // Update the previous x-coordinate
