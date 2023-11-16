@@ -429,14 +429,6 @@ $(document).ready(function () {
       })
     }
 
-    if (event.key === "3") {
-      $("#net-image").show();
-      $imgElement.attr("src", "../images/crosshair.png");
-      $imgElement.css({
-        width: "5rem",
-      });
-      $imgElement.css("z-index", "3");
-    }
     $("#bird1").click(function(){
       $("#bird1").hide();
     })
