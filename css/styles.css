@@ -39,7 +39,7 @@ body {
 }
 
 .apple {
-  height: 50px;
+  height: 70px;
   width: auto;
   position: absolute;
 }
@@ -76,6 +76,7 @@ body {
   transform: translate(-50%);
   z-index: 10;
 }
+
 #inventoryNet {
   position: absolute;
   bottom: 0.5rem;
@@ -84,6 +85,7 @@ body {
   z-index: 10;
   width: 1.3rem;
 }
+
 #inventoryAxe {
   position: absolute;
   bottom: 0.5rem;
@@ -92,13 +94,27 @@ body {
   z-index: 10;
   width: 3rem;
 }
-#inventoryrifle{
+
+#inventoryOakLog {
   position: absolute;
-  bottom: 1rem;
+  bottom: 0.5rem;
   left: calc(50% - 120px);
   transform: translate(-50%);
   z-index: 10;
   width: 3rem;
+  display: none;
+}
+
+#number{
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  bottom: -1rem;
+  left: calc(50% - 120px);
+  transform: translate(+20%);
+  z-index: 10;
+  width: 3rem;
+  display: none;
 }
 
 #grass{
@@ -107,11 +123,25 @@ body {
   height: 8%;
 }
 
-#oaklog{
+#oaklog1{
   position: absolute;
-  height: 8%;
+  height: 5%;
   bottom: 8%;
-  left: 68%;
+  left: 70%;
+}
+
+#oaklog2{
+  position: absolute;
+  height: 5%;
+  bottom: 8%;
+  left: 65%;
+}
+
+#oaklog3{
+  position: absolute;
+  height: 5%;
+  bottom: 8%;
+  left: 62%;
 }
 
 .oakleaf{
@@ -121,10 +151,19 @@ body {
   bottom: 0%;
 }
 
+#craftingTableGrid{
+  position: absolute;
+  left: 40%;
+  top: 35%;
+  display: none;
+  z-index: 3;
+}
+
 body {
   margin: 0px;
   background-attachment: fixed;
   background-repeat: repeat-x;
   background-position: bottom;
   overflow: hidden;
+  font-family: 'Minecraft', sans-serif1;
 }

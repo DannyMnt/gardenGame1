@@ -4,12 +4,19 @@
 
 const apples = ["#apple1", "#apple2", "#apple3"];
 const appleInBasket = [false, false, false];
+const oaklogs = ["#oaklog1", "#oaklog2", "#oaklog3"];
+var treeFallen = false;
+oaklogs.forEach(function(item){
+  $(item).hide();
+})
+var numberOfLogs = 0;
+var showCrafting = false;
 
 $(document).ready(function () {
   // Clone dirt block until the full screen width is covered
   const screenWidth = $(window).width();
   var value = 4;
-  for(var i = 0; i < screenWidth; i += 80){
+  for(var i = 0; i < screenWidth; i += 89){
     var clone = $("#grass").clone();
     clone.attr("id", "grass");
     $("body").append(clone);
@@ -42,38 +49,44 @@ function rotateApple(apple) {
 }
 
 $("#apple1").click(function () {
-  rotateApple("#apple1");
+  var delay = treeFallen ? 10 : 600;
+  if(treeFallen == false)
+    rotateApple("#apple1");
   setTimeout(function () {
     $("#apple1").animate({
       top: $(".basket").position().top + 160 + "px",
       left: $(".basket").position().left + 40 + "px",
     });
     $("#apple1").css("transform", "rotate(0deg)");
-  }, 600);
+  }, delay);
   appleInBasket[0] = true;
 });
 
 $("#apple2").click(function () {
-  rotateApple("#apple2");
+  var delay = treeFallen ? 10 : 600;
+  if(treeFallen == false)
+    rotateApple("#apple2");
   setTimeout(function () {
     $("#apple2").animate({
       top: $(".basket").position().top + 150 + "px",
       left: $(".basket").position().left + 60 + "px",
     });
     $("#apple2").css("transform", "rotate(0deg)");
-  }, 600);
+  }, delay);
   appleInBasket[1] = true;
 });
 
 $("#apple3").click(function () {
-  rotateApple("#apple3");
+  var delay = treeFallen ? 10 : 600;
+  if(treeFallen == false)
+    rotateApple("#apple3");
   setTimeout(function () {
     $("#apple3").animate({
       top: $(".basket").position().top + 170 + "px",
       left: $(".basket").position().left + 80 + "px",
     });
     $("#apple3").css("transform", "rotate(0deg)");
-  }, 600);
+  }, delay);
   appleInBasket[2] = true;
 });
 
@@ -343,6 +356,16 @@ $(document).ready(function () {
   });
 
   $(document).keypress(function (event) {
+    if(event.key === "e"){
+      if(showCrafting == false)
+        showCrafting = true;
+      else
+        showCrafting = false;
+      if(showCrafting == true)
+        $("#craftingTableGrid").show();
+      else
+        $("#craftingTableGrid").hide();
+    }
     navSelection(+event.key);
     if (event.key === "1") {
       $("#net-image").show();
@@ -362,32 +385,26 @@ $(document).ready(function () {
         width: "5rem",
       });
       $("#tree").click(function(){
-        $("#tree").hide()
+        $("#tree").hide();
+        oaklogs.forEach(function(item){
+          $(item).show();
+        })
+        treeFallen = true;
         for(var i = 0; i < 3; i++){
           if(appleInBasket[i] == false){
               $(apples[i]).animate({
-              top: 90 + "%"
+              top: 87 + "%"
             })
           }
         }
       })
     }
   });
+  $(".oaklog").click(function(){
+    $("#inventoryOakLog").show();
+    $("#number").show();
+    numberOfLogs++;
+    $("#number").text(numberOfLogs);
+    $(this).hide();
+  })
 });
-  // Update the previous x-coordinate
-// $('#net-image').on('click', function(event) {
-//     event.stopPropagation();
-//     $("[id]").click(function() {
-//         var elementId = $(this).attr("id");
-//         console.log("Clicked on element with ID: " + elementId);
-//     });
-//     // Your click event code for #net-image goes here
-// });
-// $("[id]").click(function() {
-//     var elementId = $(this).attr("id");
-//     console.log("Clicked on element with ID: " + elementId);
-// });
-// $('#wateringcan').click(function(){
-//     console.log("Clicking on the water can");
-//     $(this).css('transform', 'rotate(-45deg)');
-//   });2
