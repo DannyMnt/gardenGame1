@@ -120,6 +120,24 @@ body {
   left: 72.5%;
   bottom: 0%;
 }
+#inventoryScissors{
+  position: absolute;
+  bottom: .5rem;
+  left: calc(50% - 60px);
+  transform: translate(-50%);
+  z-index: 10;
+  width: 3rem;
+}
+
+#mooshroom{
+  position: absolute;
+  width: 264px;
+  height: auto;
+  bottom: 3rem;
+}
+
+
+
 
 body {
   margin: 0px;

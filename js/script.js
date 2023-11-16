@@ -77,25 +77,39 @@ $("#apple3").click(function () {
   appleInBasket[2] = true;
 });
 
-//Coded by Tadeas
+//Coded by Tadeas (butterfly)
+function getRandomIntFromRange(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
+
+$(document).ready(function () {
+  //getting the width and height of the butterfly picture so it doesnt go outside the screen
 const butterflyWidth = $("#butterfly").width();
 const butterflyHeight = $("#butterfly").height();
 
-
+//constants for the general random movement
 const movementAmount = 30;
 const movementSpeed = 1000;
 
-let isMoving = true;
+// had to use this otherwise the butterfly would go back to the 
+//same position if flew from when the user hovered their mouse over it
 
+let shouldMove = true;
+
+// function generates the new position for the butterfly to move to (only for general movement)
 function generateNewPos(){
-  var curPosX = $("#butterfly").offset().left;
-  var curPosY = $("#butterfly").offset().top;
+  // get current position of the butterfly
+  const curPosX = $("#butterfly").offset().left;
+  const curPosY = $("#butterfly").offset().top;
+
 
   let newPosX = curPosX;
   let newPosY = curPosY;
   let movementX = 0;
   let movementY = 0;
+
+  //generate movement and check if its not leaving the screen
   while(true){
     movementX = getRandomIntFromRange(-movementAmount,movementAmount);
     movementY = getRandomIntFromRange(-movementAmount,movementAmount);
@@ -104,7 +118,6 @@ function generateNewPos(){
       break;
     }
   }
-  
     newPosX += movementX;
   
     newPosY += movementY;
@@ -112,56 +125,65 @@ function generateNewPos(){
   return [newPosX,newPosY];
 }
 
+// check if a certain position is not outside the screen
 function isInBounds(posX, posY){
-  const documentWidth = $(document).width();
-  const documentHeight = $(document).height();
+ 
 
-  if (posX < 0 || posX > documentWidth) {
+  if (posX < 0 || posX > width) {
     return false;
   }
 
-  if (posY < 0 || posY > documentHeight) {
+  if (posY < 0 || posY > height) {
     return false;
   }
 
   return true;
 }
 
+// function that moves the butterfly (general movement)
 function moveImg(){
-  if(isMoving){
-    var newPos = generateNewPos();
+  if(shouldMove){
+    let newPos = generateNewPos();
 
     $("#butterfly").animate({left: newPos[0], top: newPos[1]},movementSpeed,function(){moveImg();});
   }
 }
 
-function getRandomIntFromRange(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+//function that stops the general movement and quickly moves 
+//the butterfly to a random position on the screen (when hovered over)
 
-
-$(document).ready(function () {
-  const width = $(document).width() - butterflyWidth;
-  const height = $(document).height() - butterflyHeight;
-  
-
-  moveImg();
-
-  $("#butterfly").mouseover(function(){
-    isMoving = false;
+function teleportImg(){
+    shouldMove = false;
     let newPosX = getRandomIntFromRange(0,width);
     let newPosY = getRandomIntFromRange(0,height);
-    
     $("#butterfly").stop().animate({
       left: newPosX,
       top: newPosY,
-    },100);
-  });
-  $("#butterfly").mouseout(function(){
-    isMoving = true;
-    moveImg();
-  })
+    },100, function(){shouldMove = true; moveImg();});
+}
+
+// returns random number within range
+
+
+const width = $(document).width() - butterflyWidth;
+const height = $(document).height() - butterflyHeight;
   
+
+moveImg();
+
+$("#butterfly").mouseenter(function () {
+  teleportImg();
+}).mouseleave(function () {
+  moveImg();
+});
+
+  
+});
+
+
+$(document).ready(function () {
+
+
 });
 
 //Coded by Luca
@@ -370,8 +392,33 @@ $(document).ready(function () {
             })
           }
         }
+        birds.forEach(function(item){
+          var rand = Math.floor(Math.random() * 90)
+          $(item).animate({
+            top: -10 + "%",
+            left: rand + "%"
+          }, 2000)
+        })
       })
     }
+
+    if (event.key === "3") {
+      $("#net-image").show();
+      $imgElement.attr("src", "../images/crosshair.png");
+      $imgElement.css({
+        width: "5rem",
+      });
+      $imgElement.css("z-index", "3");
+    }
+    $("#bird1").click(function(){
+      $("#bird1").hide();
+    })
+    $("#bird2").click(function(){
+      $("#bird2").hide();
+    })
+    $("#bird3").click(function(){
+      $("#bird3").hide();
+    })
   });
 });
   // Update the previous x-coordinate
