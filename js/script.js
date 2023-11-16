@@ -171,26 +171,52 @@ $(document).ready(function () {
   let clickCount = 0;
 
   $(".waterdrop").hide();
+  $("#wateringcan").click(function () {
+$(document).mousemove(function(event) {
+          $("#wateringcan").css({
+            top: event.pageY - 25,
+            left: event.pageX - 25
+          });
+        });
+$(document).mouseup(function() {
+          $(document).off('mousemove');
+
+          $(this).css("transform", "rotate(0deg)");
+          $(".waterdrop").hide();
+          $("#wateringcan").css({
+            top: 60 + "%",
+            left: 40 + "%",
+          });
+
+        });
+
+  });
 
   $("#wateringcan").click(function () {
     clickCount++;
-
+    if(clickCount==1)pourWaterdrops();
     if (clickCount % 2 === 1) {
       $(this).css("transform", "rotate(-45deg)");
       $(".waterdrop").show();
-      pourWaterdrops();
+      $("#wateringcan").click(function() {
+        
+      });
+    
     } else {
       $(this).css("transform", "rotate(0deg)");
       $(".waterdrop").hide();
       $("#wateringcan").css({
         top: 60 + "%",
         left: 40 + "%",
+        
+        
       });
+
     }
   });
 
   var drops = [];
-  for (var i = 0; i < 10; i++) {
+  for (var i = 0; i < 3; i++) {
     drops.push($(".waterdrop").eq(i));
   }
 
@@ -204,10 +230,10 @@ $(document).ready(function () {
 
   function pour(waterdrop) {
     const wateringcanPosition = $("#wateringcan").position();
-    const startV = wateringcanPosition.top + Math.random() * 20 + 50;
+    const startV = wateringcanPosition.top + Math.random() * 20 + 60;
     const startH = wateringcanPosition.left + Math.random() * 20 - 10;
     const speed = Math.random() * 1200 + 800;
-    const endV = 1000;
+    const endV = 2000;
 
     waterdrop.css({
       top: startV + "px",
