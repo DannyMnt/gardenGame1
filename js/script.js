@@ -446,6 +446,28 @@ $(document).ready(function () {
     $("#bird3").click(function(){
       $("#bird3").hide();
     })
+    if(event.key === "4"){
+      $("#net-image").show();
+      $imgElement.attr("src", "../images/scissors.png");
+      $imgElement.css({
+        width: "5rem",
+      });
+      $imgElement.css("z-index", "3");
+      $("#minecraftNavSelected").css({
+        left: "calc(50% - 60px)",
+      });
+
+      let timeout = 0;
+      $("#mooshroom").click(function(){
+        
+        if ($("#mooshroom").attr("src") === "images/mooshroom.png"){
+          $("#mooshroom").attr("src", "../images/cow.png");
+          clearTimeout(timeout);
+          timeout = setTimeout(function(){$("#mooshroom").attr("src", "images/mooshroom.png");},getRandomIntFromRange(10000,30000));
+          
+      } 
+      });
+    }
   });
   $(".oaklog").click(function(){
     $("#inventoryOakLog").show();
