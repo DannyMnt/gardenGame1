@@ -3,15 +3,28 @@
 //Coded by Daniel (Apples code)
 
 const apples = ["#apple1", "#apple2", "#apple3"];
+const appleInBasket = [false, false, false];
+const birds = ["#bird1", "#bird2", "#bird3"]
 
 $(document).ready(function () {
+  birds.forEach(function (item) {
+    var ranLeft = Math.floor(Math.random() * 20);
+    var ranTop = Math.floor(Math.random() * 20);
+    $(item).css({
+      left: ranLeft + 60 + "%",
+      top: ranTop + 40 + "%",
+      "z-index": "-1",
+      width: 100 + "px"
+    });
+  });
+
   apples.forEach(function (item) {
     var ranLeft = Math.floor(Math.random() * 20);
     var ranTop = Math.floor(Math.random() * 20);
     $(item).css({
       left: ranLeft + 60 + "%",
       top: ranTop + 40 + "%",
-      "z-index": "2",
+      "z-index": "2"
     });
   });
 });
@@ -38,6 +51,7 @@ $("#apple1").click(function () {
     });
     $("#apple1").css("transform", "rotate(0deg)");
   }, 600);
+  appleInBasket[0] = true;
 });
 
 $("#apple2").click(function () {
@@ -49,6 +63,7 @@ $("#apple2").click(function () {
     });
     $("#apple2").css("transform", "rotate(0deg)");
   }, 600);
+  appleInBasket[1] = true;
 });
 
 $("#apple3").click(function () {
@@ -60,6 +75,7 @@ $("#apple3").click(function () {
     });
     $("#apple3").css("transform", "rotate(0deg)");
   }, 600);
+  appleInBasket[2] = true;
 });
 
 //Coded by Tadeas
@@ -266,21 +282,23 @@ $(document).ready(function () {
   var $imgElement = $("#net-image");
   $(document.body).on("mousemove", function (e) {
     $imgElement.css({
-      left: e.clientX + 5 + "px",
-      top: e.clientY - 5 + "px",
+      left: e.clientX + 10 + "px",
+      top: e.clientY - 10 + "px",
+      "z-index": "3"
     });
     number = 1;
 
-    $imgElement.css({ border: "1px solid black" });
-    console.log(e.clientX + " vs " + prevX);
     // Check if x-coordinate is increasing or decreasing
     if (e.clientX > prevX) {
       $imgElement.css({
         transform: "scaleX(-1)",
-        left: e.clientX - $imgElement.width() - 15 + "px",
+        left: e.clientX - $imgElement.width() - 20 + "px",
       }); // No mirroring
     } else if (e.clientX < prevX) {
-      $imgElement.css("transform", "scaleX(1)"); // Mirror horizontally
+      $imgElement.css({
+        transform: "scaleX(1)",
+        left: e.clientX - $imgElement.width - 20 + "px"
+      }); // Mirror horizontally
     }
 
     prevX = e.clientX;
@@ -303,7 +321,7 @@ $(document).ready(function () {
     navSelection(+event.key);
     if (event.key === "1") {
       $("#net-image").show();
-      $imgElement.attr("src", "..images/");
+      $imgElement.attr("src", "../images/net.png");
       $imgElement.css({
         width: "10rem",
       });
@@ -318,18 +336,45 @@ $(document).ready(function () {
       $imgElement.css({
         width: "20rem",
       });
+      $("#tree").click(function(){
+        $(this).hide();
+        for(var i = 0; i < 3; i++){
+          if(appleInBasket[i] == false){
+              $(apples[i]).animate({
+              top: 90 + "%"
+            })
+          }
+        }
+        birds.forEach(function(item){
+          var rand = Math.floor(Math.random() * 90)
+          $(item).animate({
+            top: -10 + "%",
+            left: rand + "%"
+          }, 2000)
+        })
+      })
     }
+
+    if (event.key === "3") {
+      $("#net-image").show();
+      $imgElement.attr("src", "../images/crosshair.png");
+      $imgElement.css({
+        width: "5rem",
+      });
+      $imgElement.css("z-index", "3");
+    }
+    $("#bird1").click(function(){
+      $("#bird1").hide();
+    })
+    $("#bird2").click(function(){
+      $("#bird2").hide();
+    })
+    $("#bird3").click(function(){
+      $("#bird3").hide();
+    })
   });
-  if (event.key === "3") {
-    $("#net-image").show();
-    $imgElement.attr("src", "../images/Rifle.png");
-    $imgElement.css({
-      width: "20rem",
-    });
-  }
 });
   // Update the previous x-coordinate
-3
 // $('#net-image').on('click', function(event) {
 //     event.stopPropagation();
 //     $("[id]").click(function() {
