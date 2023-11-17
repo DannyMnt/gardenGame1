@@ -2,7 +2,15 @@ html,
 body {
   height: 100%;
   background-color: #74B3FF;
+  
 }
+
+
+.flip {
+  transform: scaleY(-1);
+  filter: invert(100%) hue-rotate(180deg);
+}
+
 
 #clouds{
   position: absolute;
@@ -163,11 +171,30 @@ body {
   position: absolute;
   width: 264px;
   height: auto;
-  bottom: 3rem;
+  bottom: 4.2rem;
 }
 
+#inventoryMushroom{
+  position: absolute;
+  bottom: .5rem;
+  left: calc(50%);
+  transform: translate(-50%);
+  z-index: 10;
+  width: 3rem;
+  display: none;
+}
 
-
+#mushroomNumber{
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  bottom: -1rem;
+  left: calc(50%);
+  transform: translate(+20%);
+  z-index: 10;
+  width: 3rem;
+  display: none;
+}
 
 #craftingTableGrid{
   position: absolute;

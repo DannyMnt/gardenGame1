@@ -91,6 +91,7 @@ $("#apple3").click(function () {
 });
 
 //Coded by Tadeas (butterfly)
+// returns random number within range
 function getRandomIntFromRange(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -175,10 +176,11 @@ function teleportImg(){
     },100, function(){shouldMove = true; moveImg();});
 }
 
-// returns random number within range
 
 
-const width = $(document).width() - butterflyWidth;
+
+const width = Math.min(($(document).width() - butterflyWidth),(1900 - butterflyWidth));
+console.log(width);
 const height = $(document).height() - butterflyHeight;
   
 
@@ -195,9 +197,41 @@ $("#butterfly").mouseenter(function () {
 
 
 $(document).ready(function () {
+  //moves the cow right
+  function moveCowRight() {
+    $("#mooshroom").css({ transform: "scaleX(1)" });
+    $("#mooshroom").animate({ left: "80%" }, 6000,"linear", function () {
+      setTimeout(function(){moveCowLeft();},1000);
+    });
+  }
 
+  //moves the cow left
+  function moveCowLeft() {
+    $("#mooshroom").css({ transform: "scaleX(-1)" });
+    $("#mooshroom").animate({ left: "10%" }, 6000,"linear", function () {
+      setTimeout(function(){moveCowRight();},1000);
+      
+    });
+  }
 
+  moveCowRight();
+
+  
 });
+let isFlipped = false;
+
+function flipWebsite(){
+  isFlipped = !isFlipped;
+  $('body').toggleClass('flip');
+
+  setTimeout(function(){
+    if(isFlipped){
+      $('body').toggleClass('flip');
+      isFlipped = false;
+    }
+  },getRandomIntFromRange(15000,25000));
+  
+}
 
 //Coded by Luca
 
@@ -438,7 +472,10 @@ $(document).ready(function () {
     $("#bird3").click(function(){
       $("#bird3").hide();
     })
-    if(event.key === "4"){
+
+    let mushroomCount = 0;
+    if (event.key === "4") {
+      
       $("#net-image").show();
       $imgElement.attr("src", "../images/scissors.png");
       $imgElement.css({
@@ -448,18 +485,50 @@ $(document).ready(function () {
       $("#minecraftNavSelected").css({
         left: "calc(50% - 60px)",
       });
-
+    
       let timeout = 0;
-      $("#mooshroom").click(function(){
-        
-        if ($("#mooshroom").attr("src") === "images/mooshroom.png"){
-          $("#mooshroom").attr("src", "../images/cow.png");
-          clearTimeout(timeout);
-          timeout = setTimeout(function(){$("#mooshroom").attr("src", "images/mooshroom.png");},getRandomIntFromRange(10000,30000));
+    
+
+      $("#mooshroom").click(function () {
+        // Check if the scissors are currently selected
+        if ($("#net-image").is(":visible") && $("#mooshroom").attr("src") === "images/mooshroom.png") {
+             
+              $("#mooshroom").attr("src", "images/cow.png");
+              mushroomCount++;
+              $("#inventoryMushroom").show();
+              $("#mushroomNumber").show();
+              $("#mushroomNumber").text(mushroomCount);
+              clearTimeout(timeout);
+              timeout = setTimeout(function () {
+                $("#mooshroom").attr("src", "images/mooshroom.png");
+              }, getRandomIntFromRange(10000, 30000));
+
+              
+             
+            }
+          });
+        }
+
+    if(event.key ==="5"){
+      
+      $(document).keypress(function (event){
+        if(event.key === "f"){
+          mushroomCount--;
+          console.log(mushroomCount);
+          if(mushroomCount > 0){
+            $("#mushroomNumber").text(mushroomCount);
+          }else{
+            $("#inventoryMushroom").hide();
+              $("#mushroomNumber").hide();
+          }
+          flipWebsite();
           
-      } 
+        }
       });
-    }
+      
+    } 
+    
+    
   });
   $(".oaklog").click(function(){
     $("#inventoryOakLog").show();
