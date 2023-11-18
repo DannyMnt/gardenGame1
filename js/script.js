@@ -462,24 +462,7 @@ $(document).ready(function () {
         })
       })
     }
-<<<<<<< Updated upstream
-
-    $("#bird1").click(function(){
-      $("#bird1").hide();
-    })
-    $("#bird2").click(function(){
-      $("#bird2").hide();
-    })
-    $("#bird3").click(function(){
-      $("#bird3").hide();
-    })
-
-    let mushroomCount = 0;
-    if (event.key === "4") {
-      
-=======
     if(event.key === "4"){
->>>>>>> Stashed changes
       $("#net-image").show();
       $imgElement.attr("src", "../images/scissors.png");
       $imgElement.css({
@@ -491,7 +474,6 @@ $(document).ready(function () {
       });
     
       let timeout = 0;
-<<<<<<< Updated upstream
     
 
       $("#mooshroom").click(function () {
@@ -507,9 +489,6 @@ $(document).ready(function () {
               timeout = setTimeout(function () {
                 $("#mooshroom").attr("src", "images/mooshroom.png");
               }, getRandomIntFromRange(10000, 30000));
-
-              
-             
             }
           });
         }
@@ -527,9 +506,8 @@ $(document).ready(function () {
               $("#mushroomNumber").hide();
           }
           flipWebsite();
-          
         }
-=======
+      });
       $("#mooshroom").click(function(){
         
         if ($("#mooshroom").attr("src") === "images/mooshroom.png"){
@@ -537,12 +515,8 @@ $(document).ready(function () {
           clearTimeout(timeout);
           timeout = setTimeout(function(){$("#mooshroom").attr("src", "images/mooshroom.png");},getRandomIntFromRange(10000,30000));
       } 
->>>>>>> Stashed changes
       });
-      
     } 
-    
-    
   });
   $(".oaklog").click(function(){
     $("#inventoryOakLog").show();
@@ -551,4 +525,4 @@ $(document).ready(function () {
     $("#number").text(numberOfLogs);
     $(this).hide();
   })
-});
+})
