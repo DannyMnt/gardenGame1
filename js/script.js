@@ -332,6 +332,38 @@ $(document).mouseup(function() {
     );
   }
 });
+
+$(document).ready(function() {
+  updateBackgroundColor();
+  setInterval(updateBackgroundColor, 60000); // Update background every minute
+});
+
+function updateBackgroundColor() {
+  var currentHour = new Date().getHours();
+  var currentColor = getBackgroundColor(currentHour);
+  $('body').css('background-color', currentColor);
+}
+
+function getBackgroundColor(hour) {
+  
+  if (hour < 6) {
+    return '#FFF0BD'; 
+  } else if (hour < 9) {
+    return '#F0E68C'; 
+  } else if (hour < 12) {
+    return '#83C1DE '; 
+  } else if (hour < 15) {
+    return '##87CEEB '; 
+  } else if (hour < 18) {
+    return '#FF7F50'; 
+  } else if (hour < 21) {
+    return '#F7CAC9'; 
+  } else {
+    return '#FF9999'; 
+  }
+}
+
+
 //Coded by Jan
 
 const navSelection = (num) => {
