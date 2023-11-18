@@ -16,7 +16,7 @@ $(document).ready(function () {
   // Clone dirt block until the full screen width is covered
   const screenWidth = $(window).width();
   var value = 4;
-  for(var i = 0; i < screenWidth; i += 89){
+  for(var i = 0; i < screenWidth; i += 70){
     var clone = $("#grass").clone();
     clone.attr("id", "grass");
     $("body").append(clone);
@@ -462,6 +462,7 @@ $(document).ready(function () {
         })
       })
     }
+<<<<<<< Updated upstream
 
     $("#bird1").click(function(){
       $("#bird1").hide();
@@ -476,6 +477,9 @@ $(document).ready(function () {
     let mushroomCount = 0;
     if (event.key === "4") {
       
+=======
+    if(event.key === "4"){
+>>>>>>> Stashed changes
       $("#net-image").show();
       $imgElement.attr("src", "../images/scissors.png");
       $imgElement.css({
@@ -487,6 +491,7 @@ $(document).ready(function () {
       });
     
       let timeout = 0;
+<<<<<<< Updated upstream
     
 
       $("#mooshroom").click(function () {
@@ -524,6 +529,15 @@ $(document).ready(function () {
           flipWebsite();
           
         }
+=======
+      $("#mooshroom").click(function(){
+        
+        if ($("#mooshroom").attr("src") === "images/mooshroom.png"){
+          $("#mooshroom").attr("src", "../images/cow.png");
+          clearTimeout(timeout);
+          timeout = setTimeout(function(){$("#mooshroom").attr("src", "images/mooshroom.png");},getRandomIntFromRange(10000,30000));
+      } 
+>>>>>>> Stashed changes
       });
       
     } 

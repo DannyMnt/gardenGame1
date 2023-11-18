@@ -171,6 +171,7 @@ body {
   position: absolute;
   width: 264px;
   height: auto;
+<<<<<<< Updated upstream
   bottom: 4.2rem;
 }
 
@@ -196,12 +197,21 @@ body {
   display: none;
 }
 
+=======
+  bottom: 7%;
+}
+
+>>>>>>> Stashed changes
 #craftingTableGrid{
   position: absolute;
   left: 40%;
   top: 35%;
   display: none;
   z-index: 3;
+}
+
+#mushroom{
+  position: absolute;
 }
 
 body {
