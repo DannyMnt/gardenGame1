@@ -96,7 +96,7 @@ function getRandomIntFromRange(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-
+let isFlipped = false;
 $(document).ready(function () {
   //getting the width and height of the butterfly picture so it doesnt go outside the screen
 const butterflyWidth = $("#butterfly").width();
@@ -127,10 +127,17 @@ function generateNewPos(){
   while(true){
     movementX = getRandomIntFromRange(-movementAmount,movementAmount);
     movementY = getRandomIntFromRange(-movementAmount,movementAmount);
-    
-    if(isInBounds(newPosX + movementX, newPosY + movementY)){
-      break;
+    if(isFlipped){
+      if(isInBounds(Math.abs(newPosX + movementX), Math.abs(newPosY + movementY))){
+        break;
+      }
     }
+    else{
+      if(isInBounds(newPosX + movementX, newPosY + movementY)){
+        break;
+      }
+    }
+    
   }
     newPosX += movementX;
   
@@ -218,7 +225,7 @@ $(document).ready(function () {
 
   
 });
-let isFlipped = false;
+
 
 function flipWebsite(){
   isFlipped = !isFlipped;
@@ -494,6 +501,7 @@ $(document).ready(function () {
         })
       })
     }
+    let mushroomCount = 0;
     if(event.key === "4"){
       $("#net-image").show();
       $imgElement.attr("src", "../images/scissors.png");
@@ -506,7 +514,7 @@ $(document).ready(function () {
       });
     
       let timeout = 0;
-    
+      
 
       $("#mooshroom").click(function () {
         // Check if the scissors are currently selected
@@ -537,7 +545,9 @@ $(document).ready(function () {
             $("#inventoryMushroom").hide();
               $("#mushroomNumber").hide();
           }
+          console.log($("#butterfly").offset().left,$("#butterfly").offset().top);
           flipWebsite();
+          console.log($("#butterfly").offset().left,$("#butterfly").offset().top);
         }
       });
       $("#mooshroom").click(function(){
