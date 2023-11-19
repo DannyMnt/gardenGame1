@@ -1,58 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>The Secret Garden</title>
+    <link href="css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet" />
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <title>The Secret Garden</title>
-  <link href="css/styles.css" type="text/css" rel="stylesheet" />
-  <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
-</head>
+  <body id="container">
+    <img src="images/minecraftNav.png" id="minecraftNav" alt="minecraftNav" />
+    <img
+      src="images/minecraftNavSelected.png"
+      id="minecraftNavSelected"
+      alt="minecraftNavSelected"
+    />
+    <img src="images/net.png" id="inventoryNet" alt="inventory net" />
+    <img src="images/axe.png" id="inventoryAxe" alt="inventory axe" />
+    <img src="images/oaklog.png" alt="" id="inventoryOakLog" />
+    <p id="number">0</p>
+    <img
+      src="images/scissors.png"
+      id="inventoryScissors"
+      alt="inventory scissors"
+    />
+    <img src="images/butterfly.png" id="butterfly" alt="butterfly" />
+    <img src="images/net.png" id="net-image" alt="net" />
+    <img
+      src="images/wateringcan.png"
+      id="inventoryWateringcan"
+      alt="wateringcan"
+    />
+    <img src="images/waterdrop.png" class="waterdrop" alt="waterdrop" />
+    <img src="images/waterdrop.png" class="waterdrop" alt="waterdrop" />
+    <img src="images/waterdrop.png" class="waterdrop" alt="waterdrop" />
+    <img src="images/clouds.png" alt="" id="clouds" />
+    <img src="images//grass2.png" alt="" id="grass" />
+    <img src="images/tree2.png" alt="" id="tree" />
+    <img src="images/oaklog.png" alt="" id="oaklog1" class="oaklog" />
+    <img src="images/oaklog.png" alt="" id="oaklog2" class="oaklog" />
+    <img src="images/oakPlank.png" alt="" id="oakPlank" />
+    <img src="images/oaklog.png" alt="" id="oaklog3" class="oaklog" />
+    <img src="images/craftingTableGrid.png" alt="" id="craftingTableGrid" />
+    <img src="images/mooshroom.png" id="mooshroom" alt="mooshroom cow" />
+    <img
+      src="images/red_mushroom.png"
+      id="inventoryMushroom"
+      alt="red mushroom"
+    />
+    <p id="mushroomNumber">0</p>
 
-<body id="container">
-  <img src="images/minecraftNav.png" id="minecraftNav" alt="minecraftNav" />
-  <img src="images/minecraftNavSelected.png" id="minecraftNavSelected" alt="minecraftNavSelected" />
-  <img src="images/net.png" id="inventoryNet" alt="inventory net" />
-  <img src="images/axe.png" id="inventoryAxe" alt="inventory axe" />
-  <img src="images/oaklog.png" alt="" id = "inventoryOakLog">
-  <p id = "number">0</p>
-  <img src="images/scissors.png" id="inventoryScissors" alt="inventory scissors">
-  <img src="images/bee.webp" id="butterfly" alt="butterfly" />
-  <img src="images/net.png" id="net-image" alt="net" />
-  <img src="images/wateringcan.png" id="wateringcan" alt="wateringcan" />
-  <img src="images/waterdrop.png" class="waterdrop" alt="waterdrop" />
-  <img src="images/waterdrop.png" class="waterdrop" alt="waterdrop" />
-  <img src="images/waterdrop.png" class="waterdrop" alt="waterdrop" />
-  <img src="images/clouds.png" alt="" id = "clouds">
-  <img src="images//grass2.png" alt="" id = "grass">
-  <img src="images/tree2.png" alt="" id = "tree">
-  <img src="images/oaklog.png" alt="" id = "oaklog1" class = "oaklog">
-  <img src="images/oaklog.png" alt="" id = "oaklog2" class = "oaklog">
-  <img src="images/oakPlank.png" alt="" id = "oakPlank">
-  <img src="images/oaklog.png" alt="" id = "oaklog3" class = "oaklog">
-  <img src="images/craftingTableGrid.png" alt="" id = "craftingTableGrid">
-  <img src="images/mooshroom.png" id="mooshroom" alt="mooshroom cow">
-  <img src="images/red_mushroom.png" id="inventoryMushroom" alt="red mushroom">
-  <p id = "mushroomNumber">0</p>
-  
-  <img src="images/apple.png" class="apple" id="apple1" alt="apple" />
-  <img src="images/apple.png" class="apple" id="apple2" alt="apple" />
-  <img src="images/apple.png" class="apple" id="apple3" alt="apple" />
-  <img src="images/basket.png" class="basket" alt="basket" />
-  <img src="images/basketfront.png" class="basket" id="basketfront" alt="basketfront" />
+    <img src="images/apple.png" class="apple" id="apple1" alt="apple" />
+    <img src="images/apple.png" class="apple" id="apple2" alt="apple" />
+    <img src="images/apple.png" class="apple" id="apple3" alt="apple" />
+    <img src="images/basket.png" class="basket" alt="basket" />
+    <img
+      src="images/basketfront.png"
+      class="basket"
+      id="basketfront"
+      alt="basketfront"
+    />
 
-  <button id="help-button">Help</button>
+    <button id="help-button">Help</button>
 
-  <div id="help-popup">
-    <h1>We know it's complicated</h1>
-    <p>Use the numbers on the keyboard to navigate the toolbar</p>
-    <p>You can chop the tree using the axe and you can collect the wood logs from it</p>
-    <p>After getting logs you can tap 'E' to open the crafting menu</p>
-    <p>Use the shears to give the cow a haircut and harvest mushrooms</p>
-    <p>Hint: try eating the mushrooms by pressing 'F'</p>
-  </div>
+    <div id="help-popup">
+      <h1>We know it's complicated</h1>
+      <p>Use the numbers on the keyboard to navigate the toolbar</p>
+      <p>
+        You can chop the tree using the axe and you can collect the wood logs
+        from it
+      </p>
+      <p>After getting logs you can tap 'E' to open the crafting menu</p>
+      <p>Use the shears to give the cow a haircut and harvest mushrooms</p>
+      <p>Hint: try eating the mushrooms by pressing 'F'</p>
+    </div>
 
-
-  <script src="js/jquery-3.7.1.min.js"></script>
-  <script src="js/script.js"></script>
-</body>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
 </html>

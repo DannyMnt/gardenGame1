@@ -7,6 +7,7 @@ const appleInBasket = [false, false, false];
 const oaklogs = ["#oaklog1", "#oaklog2", "#oaklog3"];
 var treeFallen = false;
 var temp;
+let isRotated = false;
 
 oaklogs.forEach(function (item) {
   $(item).hide();
@@ -421,43 +422,66 @@ $(document).ready(function () {
   $(document.body).on("mousemove", function (e) {
     $imgElement.css({
       left: e.clientX + 5 + "px",
-      top: e.clientY - 5 + "px",
+      top: e.clientY,
       "z-index": "3",
     });
     number = 1;
 
     // Check if x-coordinate is increasing or decreasing
-    if (e.clientX > prevX) {
+    if (e.clientX >= prevX) {
       $imgElement.css({
         transform: "scaleX(-1)",
-        left: e.clientX - $imgElement.width() - 5 + "px",
+        left: e.clientX - $imgElement.width() - 20 + "px",
       }); // No mirroring
     } else if (e.clientX < prevX) {
       $imgElement.css({
         transform: "scaleX(1)",
-        left: e.clientX - $imgElement.width - 5 + "px",
+        left: e.clientX + 10 + "px",
       }); // Mirror horizontally
     }
 
+    if (toolSelected === "wateringcan") {
+      if (isRotated) {
+        $imgElement.css({
+          transform: "scaleX(1) rotate(-45deg)",
+          top: e.clientY - $imgElement.height() / 2,
+          left: e.clientX - $imgElement.width() / 2 + "px",
+        });
+      } else {
+        $imgElement.css({
+          transform: "scaleX(1)",
+          top: e.clientY - $imgElement.height() / 2,
+          left: e.clientX - $imgElement.width() / 2 + "px",
+        });
+      }
+    }
     prevX = e.clientX;
   });
 
-  //$(window).bind("mousewheel DOMMouseScroll", function (event) {
-  //if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
-  // scroll up
-  //number++;
-  //if (number > 9) number = 1;
-  //} else {
-  //number--;
-  // scroll down
-  //if (number <= 0) number = 9;
-  //}
-  //navSelection(number);
-  //});
+  $(window).bind("mousewheel DOMMouseScroll", function (event) {
+    if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
+      // scroll up
+      number++;
+      if (number > 9) number = 1;
+    } else {
+      number--;
+      // scroll down
+      if (number <= 0) number = 9;
+    }
+    navSelection(number);
+  });
 
   //Coded together
   $(document).keypress(function (event) {
     navSelection(+event.key);
+
+    if (event.key !== "6") {
+      isRotated = false;
+      $imgElement.css({
+        transform: "rotate(0deg)",
+      });
+    }
+
     if (event.key === "e") {
       toolSelected == "craftingTable";
       if (showCrafting == false) showCrafting = true;
@@ -512,61 +536,133 @@ $(document).ready(function () {
       toolSelected = "log";
     }
 
+    let mushroomCount = 0;
     if (event.key === "4") {
       toolSelected = "scissors";
-      let mushroomCount = 0;
-      if (event.key === "4") {
-        $("#net-image").show();
-        $imgElement.attr("src", "../images/scissors.png");
-        $imgElement.css({
-          width: "5rem",
-        });
-        $imgElement.css("z-index", "3");
-        $("#minecraftNavSelected").css({
-          left: "calc(50% - 60px)",
-        });
+      $("#net-image").show();
+      $imgElement.attr("src", "../images/scissors.png");
+      $imgElement.css({
+        width: "5rem",
+      });
+      $imgElement.css("z-index", "3");
+      $("#minecraftNavSelected").css({
+        left: "calc(50% - 60px)",
+      });
 
-        let timeout = 0;
-
-        $("#mooshroom").click(function () {
-          // Check if the scissors are currently selected
-          if (
-            $("#net-image").is(":visible") &&
-            $("#mooshroom").attr("src") === "images/mooshroom.png"
-          ) {
-            $("#mooshroom").attr("src", "images/cow.png");
-            mushroomCount++;
-            console.log(mushroomCount);
-            $("#inventoryMushroom").show();
-            $("#mushroomNumber").show();
-            $("#mushroomNumber").text(mushroomCount);
-            clearTimeout(timeout);
-            timeout = setTimeout(function () {
-              $("#mooshroom").attr("src", "images/mooshroom.png");
-            }, getRandomIntFromRange(10000, 30000));
-          }
-        });
+      let timeout = 0;
+    }
+    $("#mooshroom").click(function () {
+      // Check if the scissors are currently selected
+      if (
+        $("#net-image").is(":visible") &&
+        $("#mooshroom").attr("src") === "images/mooshroom.png"
+      ) {
+        $("#mooshroom").attr("src", "images/cow.png");
+        mushroomCount++;
+        console.log(mushroomCount);
+        $("#inventoryMushroom").show();
+        $("#mushroomNumber").show();
+        $("#mushroomNumber").text(mushroomCount);
+        clearTimeout(timeout);
+        timeout = setTimeout(function () {
+          $("#mooshroom").attr("src", "images/mooshroom.png");
+        }, getRandomIntFromRange(10000, 30000));
       }
+    });
 
-      if (event.key === "5") {
-        toolSelected = "mushroom";
-      }
-      $(document).keypress(function (event2) {
-        if (event2.key === "f" && toolSelected === "mushroom") {
-          mushroomCount--;
-          console.log(mushroomCount);
-          if (mushroomCount > 0) {
-            $("#mushroomNumber").text(mushroomCount);
-          } else {
-            $("#inventoryMushroom").hide();
-            $("#mushroomNumber").hide();
-          }
-
-          flipWebsite();
+    if (event.key === "5") {
+      toolSelected = "mushroom";
+    }
+    $(document).keypress(function (event2) {
+      if (event2.key === "f" && toolSelected === "mushroom") {
+        mushroomCount--;
+        console.log(mushroomCount);
+        if (mushroomCount > 0) {
+          $("#mushroomNumber").text(mushroomCount);
+        } else {
+          $("#inventoryMushroom").hide();
+          $("#mushroomNumber").hide();
         }
+
+        flipWebsite();
+      }
+    });
+
+    // coded by Luca & Jan
+    if (event.key === "6") {
+      toolSelected = "wateringcan";
+      $("#net-image").show();
+      $imgElement.attr("src", "../images/wateringcan.png");
+      $imgElement.css({
+        width: "10rem",
+      });
+      $imgElement.css("z-index", "3");
+      $("#minecraftNavSelected").css({
+        left: "calc(50% + 60px)",
       });
     }
   });
+  $("#net-image").click(() => {
+    if (toolSelected != "wateringcan") return;
+    isRotated = !isRotated;
+    var drops = [];
+    for (var i = 0; i < 3; i++) {
+      drops.push($(".waterdrop").eq(i));
+    }
+    if (!isRotated) {
+      $imgElement.css("transform", `rotate(0deg)`);
+    } else {
+      $imgElement.css("transform", `rotate(-45deg)`);
+      pourWaterDrops();
+    }
+
+    function pourWaterDrops() {
+      for (let i = 0; i < drops.length; i++) {
+        setTimeout(function () {
+          pour(drops[i]);
+        }, i * 500); // Delay each animation by 500ms
+      }
+    }
+
+    function pour(waterdrop) {
+      const wateringcanPosition = $imgElement.position();
+      const startV = wateringcanPosition.top + Math.random() * 20 + 60;
+      const startH = wateringcanPosition.left + Math.random() * 20 - 10;
+      const speed = Math.random() * 1200 + 800;
+      const endV = 2000;
+
+      waterdrop.css({
+        top: startV + "px",
+        left: startH + "px",
+        visibility: "visible",
+      });
+
+      $({
+        pos: startV,
+      }).animate(
+        {
+          pos: endV,
+        },
+        {
+          duration: speed,
+          step: function (now) {
+            waterdrop.css({
+              top: now + "px",
+            });
+          },
+          complete: function () {
+            waterdrop.css({
+              visibility: "hidden",
+            });
+            if (isRotated) {
+              pour(waterdrop);
+            }
+          },
+        }
+      );
+    }
+  });
+
   $(".oaklog").click(function () {
     $("#inventoryOakLog").show();
     $("#number").show();
