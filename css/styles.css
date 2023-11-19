@@ -50,12 +50,6 @@ body {
   position: absolute;
 }
 
-#bird1,
-#bird2,
-#bird3 {
-  position: absolute;
-}
-
 #tree {
   position: fixed;
   bottom: -15%;
