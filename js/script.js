@@ -359,7 +359,7 @@ function getBackgroundColor(hour) {
   } else if (hour < 21) {
     return '#F7CAC9'; 
   } else {
-    return '#FF9999'; 
+    return '#FF9999'; // Light silver
   }
 }
 
