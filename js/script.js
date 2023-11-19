@@ -13,6 +13,7 @@ oaklogs.forEach(function (item) {
 });
 var numberOfLogs = 0;
 var showCrafting = false;
+$("#basketfront").css("z-index", "3")
 
 $(document).ready(function () {
   // Clone dirt block until the full screen width is covered
@@ -252,12 +253,6 @@ $(document).ready(function () {
 
   $(".waterdrop").hide();
   $("#wateringcan").click(function () {
-    $(document).mousemove(function (event) {
-      $("#wateringcan").css({
-        top: event.pageY - 25,
-        left: event.pageX - 25,
-      });
-    });
     $(document).mouseup(function () {
       $(document).off("mousemove");
 
