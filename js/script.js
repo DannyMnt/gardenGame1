@@ -1,4 +1,4 @@
-//MAKE THE MAGIC HAPPEN
+
 
 //Coded by Daniel
 
@@ -615,7 +615,7 @@ $(document).ready(function () {
       toolSelected = "mushroom";
     }
 
-    if (event.key === "f" && toolSelected === "mushroom") {
+    if (event.key === "f" && toolSelected === "mushroom" && mushroomCount > 0) {
       mushroomCount--;
       if (mushroomCount > 0) {
         $("#mushroomNumber").text(mushroomCount);
