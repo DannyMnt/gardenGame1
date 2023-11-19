@@ -453,18 +453,20 @@ $(document).ready(function () {
     prevX = e.clientX;
   });
 
-  $(window).bind("mousewheel DOMMouseScroll", function (event) {
-    if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
+  //Scrolling trough the toolbar function that we are not going to use anymore
+
+  //$(window).bind("mousewheel DOMMouseScroll", function (event) {
+    //if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
       //scroll up
-      number++;
-      if (number > 9) number = 1;
-    } else {
-      number--;
+      //number++;
+      //if (number > 9) number = 1;
+    //} else {
+      //number--;
       //scroll down
-      if (number <= 0) number = 9;
-    }
-    navSelection(number);
-  });
+     // if (number <= 0) number = 9;
+    //}
+    //navSelection(number);
+  //});
 
   //Coded together
   $(document).keypress(function (event) {
