@@ -6,7 +6,6 @@ const apples = ["#apple1", "#apple2", "#apple3"];
 const appleInBasket = [false, false, false];
 const oaklogs = ["#oaklog1", "#oaklog2", "#oaklog3"];
 var treeFallen = false;
-var netEquiped = true;
 var temp;
 
 oaklogs.forEach(function(item){
@@ -197,10 +196,11 @@ const height = $(document).height() - butterflyHeight;
 moveImg();
 
 $("#butterfly").mouseenter(function () {
-  if(netEquiped)
+  if(toolSelected === "net")
     teleportImg();
 }).mouseleave(function () {
-  moveImg();
+  if(toolSelected === "net")
+    moveImg();
 });
 
   
@@ -454,10 +454,11 @@ $(document).ready(function () {
     navSelection(number);
   });
 
+  //Coded together
   $(document).keypress(function (event) {
     navSelection(+event.key);
     if(event.key === "e"){
-      netEquiped = false;
+      toolSelected == "craftingTable";
       if(showCrafting == false)
         showCrafting = true;
       else
@@ -518,7 +519,6 @@ $(document).ready(function () {
       toolSelected = "scissors";
     let mushroomCount = 0;
     if(event.key === "4"){
-      netEquiped = false;
       $("#net-image").show();
       $imgElement.attr("src", "../images/scissors.png");
       $imgElement.css({
@@ -538,6 +538,7 @@ $(document).ready(function () {
              
               $("#mooshroom").attr("src", "images/cow.png");
               mushroomCount++;
+              console.log(mushroomCount);
               $("#inventoryMushroom").show();
               $("#mushroomNumber").show();
               $("#mushroomNumber").text(mushroomCount);
@@ -552,20 +553,21 @@ $(document).ready(function () {
     if(event.key ==="5"){
       toolSelected = "mushroom";
     }
-
-    if(event.key === "f" && toolSelected === "mushroom"){
-      mushroomCount--;
-      console.log(mushroomCount);
-      if(mushroomCount > 0){
-        $("#mushroomNumber").text(mushroomCount);
-      }else{
-        $("#inventoryMushroom").hide();
-         $("#mushroomNumber").hide();
+    $(document).keypress(function(event2){
+      if(event2.key === "f" && toolSelected === "mushroom"){
+        mushroomCount--;
+        console.log(mushroomCount);
+        if(mushroomCount > 0){
+          $("#mushroomNumber").text(mushroomCount);
+        }else{
+          $("#inventoryMushroom").hide();
+           $("#mushroomNumber").hide();
+        }
+            
+         flipWebsite();
+            
       }
-          
-       flipWebsite();
-          
-    }
+    })
   }
 });
   $(".oaklog").click(function(){
