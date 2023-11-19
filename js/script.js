@@ -552,24 +552,21 @@ $(document).ready(function () {
           }
         });
       }
-
-      if (event.key === "5") {
-        toolSelected = "mushroom";
+    }
+    if (event.key === "5") {
+      toolSelected = "mushroom";
+    }
+    if (event.key === "f" && toolSelected === "mushroom") {
+      mushroomCount--;
+      console.log(mushroomCount);
+      if (mushroomCount > 0) {
+        $("#mushroomNumber").text(mushroomCount);
+      } else {
+        $("#inventoryMushroom").hide();
+        $("#mushroomNumber").hide();
       }
-      $(document).keypress(function (event2) {
-        if (event2.key === "f" && toolSelected === "mushroom") {
-          mushroomCount--;
-          console.log(mushroomCount);
-          if (mushroomCount > 0) {
-            $("#mushroomNumber").text(mushroomCount);
-          } else {
-            $("#inventoryMushroom").hide();
-            $("#mushroomNumber").hide();
-          }
 
-          flipWebsite();
-        }
-      });
+      flipWebsite();
     }
   });
   $(".oaklog").click(function () {
