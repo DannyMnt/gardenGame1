@@ -338,7 +338,6 @@ $(document).ready(function () {
       left: e.clientX + 5 + "px",
       top: e.clientY,
       "z-index": "3",
-      border: "3px solid green",
     });
     number = 1;
 
@@ -510,7 +509,6 @@ $(document).ready(function () {
       $imgElement.attr("src", "../images/wateringcan.png");
       $imgElement.css({
         width: "10rem",
-        border: "3px solid green",
       });
       $imgElement.css("z-index", "3");
       $("#minecraftNavSelected").css({
