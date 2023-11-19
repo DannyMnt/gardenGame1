@@ -252,7 +252,7 @@ $(document).mousemove(function(event) {
           $("#wateringcan").css({
             top: event.pageY - 25,
             left: event.pageX - 25
-          });// do first click and second click using let clicks be 0;
+          });
         });
 $(document).mouseup(function() {
           $(document).off('mousemove');
@@ -266,7 +266,8 @@ $(document).mouseup(function() {
 
         });
 
-  });
+  }); 
+
 
   $("#wateringcan").click(function () {
     clickCount++;
@@ -367,10 +368,26 @@ function getBackgroundColor(hour) {
   } else if (hour < 21) {
     return '#F7CAC9'; 
   } else {
-    return '#FF9999'; // Light silver
+    return '#FF9999';
   }
 }
 
+
+const helpButton = document.getElementById('help-button');
+const helpPopup = document.getElementById('help-popup');
+
+
+let isHelpPopupVisible = false;
+
+helpButton.addEventListener('click', () => {
+  if (!isHelpPopupVisible) {
+    helpPopup.style.display = 'block';
+    isHelpPopupVisible = true;
+  } else {
+    helpPopup.style.display = 'none';
+    isHelpPopupVisible = false;
+  }
+});
 
 //Coded by Jan
 
