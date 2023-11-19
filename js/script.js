@@ -256,16 +256,15 @@ function flipWebsite() {
 //Coded by Luca
 
 $(document).ready(function () {
-  let clickCount = 0;
-
-  $(".waterdrop").hide();
+  let clickCount = 0;// using a counter to monitor state
+  $(".waterdrop").hide(); // avoiding having waterdrops in the corner
   $("#wateringcan").click(function () {
     $(document).mouseup(function () {
       $(document).off("mousemove");
 
       $(this).css("transform", "rotate(0deg)");
       $(".waterdrop").hide();
-      $("#wateringcan").css({
+      $("#wateringcan").css({      // holding it in place
         top: 60 + "%",
         left: 40 + "%",
       });
@@ -274,7 +273,7 @@ $(document).ready(function () {
 
   $("#wateringcan").click(function () {
     clickCount++;
-    if (clickCount == 1) pourWaterdrops();
+    if (clickCount == 1) pourWaterdrops();   // waterdrops appear and fall
     if (clickCount % 2 === 1) {
       $(this).css("transform", "rotate(-45deg)");
       $(".waterdrop").show();
@@ -290,15 +289,15 @@ $(document).ready(function () {
   });
 
   var drops = [];
-  for (var i = 0; i < 3; i++) {
+  for (var i = 0; i < 3; i++) {              // separating divs
     drops.push($(".waterdrop").eq(i));
   }
 
   function pourWaterdrops() {
     for (let i = 0; i < drops.length; i++) {
-      setTimeout(function () {
+      setTimeout(function () {                 // separating divs
         pour(drops[i]);
-      }, i * 500); // Delay each animation by 500ms
+      }, i * 500);          // Delay 
     }
   }
 
@@ -341,7 +340,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   updateBackgroundColor();
-  setInterval(updateBackgroundColor, 60000); // Update background every minute
+  setInterval(updateBackgroundColor, 60000); // Simple background changer based on device time
 });
 
 function updateBackgroundColor() {
@@ -372,7 +371,7 @@ const helpButton = document.getElementById("help-button");
 const helpPopup = document.getElementById("help-popup");
 
 let isHelpPopupVisible = false;
-
+ // realized our page was too complicated and implemented a small guide
 helpButton.addEventListener("click", () => {
   if (!isHelpPopupVisible) {
     helpPopup.style.display = "block";
