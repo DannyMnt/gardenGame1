@@ -130,7 +130,6 @@ function generateNewPos(){
   let movementY = getRandomIntFromRange(-movementAmount,movementAmount) * flipMultiplier;
   
   //generate movement and check if its not leaving the screen
-  console.log(newPosX, newPosY, movementX, movementY);
     while(true){
       
       if(isInBounds(newPosX + movementX, newPosY + movementY)){
@@ -478,11 +477,7 @@ $(document).ready(function () {
       })
     }
     if (event.key === "1") {
-<<<<<<< Updated upstream
       toolSelected = "net";
-=======
-      netEquiped = true;
->>>>>>> Stashed changes
       $("#net-image").show();
       $imgElement.attr("src", "../images/net.png");
       $imgElement.css({
@@ -494,11 +489,7 @@ $(document).ready(function () {
     }
 
     if (event.key === "2") {
-<<<<<<< Updated upstream
       toolSelected = "axe";
-=======
-      netEquiped = false;
->>>>>>> Stashed changes
       $("#net-image").show();
       $imgElement.attr("src", "../images/axe.png");
       $imgElement.css({
@@ -519,18 +510,15 @@ $(document).ready(function () {
         }
       })
     }
-<<<<<<< Updated upstream
     if(event.key === "3"){
       toolSelected = "log";
     }
 
     if(event.key === "4"){
       toolSelected = "scissors";
-=======
     let mushroomCount = 0;
     if(event.key === "4"){
       netEquiped = false;
->>>>>>> Stashed changes
       $("#net-image").show();
       $imgElement.attr("src", "../images/scissors.png");
       $imgElement.css({
@@ -562,7 +550,6 @@ $(document).ready(function () {
         }
 
     if(event.key ==="5"){
-<<<<<<< Updated upstream
       toolSelected = "mushroom";
     }
 
@@ -579,35 +566,8 @@ $(document).ready(function () {
        flipWebsite();
           
     }
-      
-      
-     
-=======
-      netEquiped = false;
-      $(document).keypress(function (event){
-        if(event.key === "f"){
-          mushroomCount--;
-          console.log(mushroomCount);
-          if(mushroomCount > 0){
-            $("#mushroomNumber").text(mushroomCount);
-          }else{
-            $("#inventoryMushroom").hide();
-              $("#mushroomNumber").hide();
-          }
-          flipWebsite();
-        }
-      });
-      $("#mooshroom").click(function(){
-        
-        if ($("#mooshroom").attr("src") === "images/mooshroom.png"){
-          $("#mooshroom").attr("src", "../images/cow.png");
-          clearTimeout(timeout);
-          timeout = setTimeout(function(){$("#mooshroom").attr("src", "images/mooshroom.png");},getRandomIntFromRange(10000,30000));
-      } 
-      });
-    } 
->>>>>>> Stashed changes
-  });
+  }
+});
   $(".oaklog").click(function(){
     $("#inventoryOakLog").show();
     $("#number").show();
