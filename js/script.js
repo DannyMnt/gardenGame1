@@ -22,12 +22,12 @@ $("#basketfront").css("z-index", "3");
 $(document).ready(function () {
   // Clone dirt block until the full screen width is covered
   var value = 4;
-  for (var i = 0; i < screenWidth; i += 70) {
+  for (var i = 0; i < screenWidth; i += 30) {
     var clone = $("#grass").clone();
     clone.attr("id", "grass");
     $("body").append(clone);
     clone.css("left", value + "%");
-    value += 4;
+    value += 2;
   }
 
   //Positioning the apples randomly in the tree
@@ -235,15 +235,8 @@ $(document).ready(function () {
       }, 1000);
     });
   }
-
   moveCowRight();
-
-  
-  
 });
-
-
-
 
 function flipWebsite() {
   isFlipped = !isFlipped;
@@ -469,12 +462,12 @@ $(document).ready(function () {
 
   $(window).bind("mousewheel DOMMouseScroll", function (event) {
     if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
-      // scroll up
+       //scroll up
       number++;
-      if (number > 9) number = 1;
+    if (number > 9) number = 1;
     } else {
       number--;
-      // scroll down
+       //scroll down
       if (number <= 0) number = 9;
     }
     navSelection(number);
@@ -513,10 +506,10 @@ $(document).ready(function () {
         })
         $("#craftingStation2").click(function(){
           if(numberOfPlanks > 0){
-            numberOfPlanks--;
+            numberOfPlanks -= 2;
             $("#inventoryOakPlankNumber").text(String(numberOfPlanks));
             $("#inventoryStick").show();
-            numberOfSticks++;
+            numberOfSticks += 4;
             $("#inventoryStickNumber").show();
             $("#inventoryStickNumber").text(String(numberOfSticks));
             if(numberOfPlanks == 0){
