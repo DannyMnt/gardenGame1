@@ -9,14 +9,13 @@ var treeFallen = false;
 var temp;
 let isRotated = false;
 const screenWidth = $(window).width();
-$("#craftingTableGrid").css({
-  left: screenWidth / 2.5
-})
 
 oaklogs.forEach(function (item) {
   $(item).hide();
 });
-var numberOfLogs = 0;
+var numberOfLogs = parseInt($("#number").text());
+var numberOfPlanks = parseInt($("#inventoryOakPlankNumber").text());
+var numberOfSticks = parseInt($("#inventoryStickNumber").text());
 var showCrafting = false;
 $("#basketfront").css("z-index", "3");
 
@@ -203,7 +202,6 @@ $(document).ready(function () {
     $(document).width() - butterflyWidth,
     1900 - butterflyWidth
   );
-  console.log(width);
   const height = $(document).height() - butterflyHeight;
 
   moveImg();
@@ -492,27 +490,59 @@ $(document).ready(function () {
       toolSelected == "craftingTable";
       if (showCrafting == false) showCrafting = true;
       else showCrafting = false;
-      if (showCrafting == true) 
-        $("#craftingTableGrid").show();
+      if (showCrafting == true){
+        $("#crafting").show();
+        $("#craftingStation1").click(function(){
+          if(numberOfLogs > 0){
+            numberOfLogs--;
+            $("#number").text(String(numberOfLogs));
+            numberOfPlanks += 4;
+            $("#inventoryOakPlank").show();
+            $("#inventoryOakPlankNumber").show();
+            $("#inventoryOakPlankNumber").text(String(numberOfPlanks))
+            if(numberOfLogs == 0){
+              $("#number").hide();
+              $("#inventoryOakLog").hide();
+            }
+          }
+        })
+        $("#craftingStation2").click(function(){
+          if(numberOfPlanks > 0){
+            numberOfPlanks--;
+            $("#inventoryOakPlankNumber").text(String(numberOfPlanks));
+            $("#inventoryStick").show();
+            numberOfSticks++;
+            $("#inventoryStickNumber").show();
+            $("#inventoryStickNumber").text(String(numberOfSticks));
+            if(numberOfPlanks == 0){
+              $("#inventoryOakPlankNumber").hide();
+              $("#inventoryOakPlank").hide();
+            }
+          }
+        })
+        $("#craftingStation3").click(function(){
+          if(numberOfPlanks >= 2 && numberOfSticks >= 1){
+            numberOfPlanks -= 2;
+            $("#inventoryOakPlankNumber").text(String(numberOfPlanks));
+            numberOfSticks--;
+            $("#inventoryStickNumber").text(String(numberOfSticks));
+            $("#inventoryWoodenSword").show();
+            if(numberOfSticks == 0){
+              $("#inventoryStickNumber").hide();
+              $("#inventoryStick").hide();
+            }
+            if(numberOfPlanks == 0){
+              $("#inventoryOakPlankNumber").hide();
+              $("#inventoryOakPlank").hide();
+            }
+          }
+        })
+      }
       else {
-        $("#craftingTableGrid").hide();
+        $("#crafting").hide();
         $("#oakPlank").hide();
         $("numberOfCrafts").hide();
       }
-      $(document).keypress(function (event2) {
-        if (event2.key === "3" && showCrafting == true) {
-          if (numberOfLogs >= 0) {
-            $("#oakPlank").show();
-            $("#oakPlank").css({
-              left: screenWidth / 1.7 + "px",
-            })
-            $("#numberOfCrafts").show();
-            $("#numberOfCrafts").css({
-              left: screenWidth / 1.63 + "px",
-            })
-          }
-        }
-      });
     }
     if (event.key === "1") {
       toolSelected = "net";
@@ -575,7 +605,6 @@ $(document).ready(function () {
       ) {
         $("#mooshroom").attr("src", "images/cow.png");
         mushroomCount++;
-        console.log(mushroomCount);
         $("#inventoryMushroom").show();
         $("#mushroomNumber").show();
         $("#mushroomNumber").text(mushroomCount);
@@ -592,7 +621,6 @@ $(document).ready(function () {
     $(document).keypress(function (event2) {
       if (event2.key === "f" && toolSelected === "mushroom") {
         mushroomCount--;
-        console.log(mushroomCount);
         if (mushroomCount > 0) {
           $("#mushroomNumber").text(mushroomCount);
         } else {
@@ -641,7 +669,6 @@ $(document).ready(function () {
     }
 
     function pour(waterdrop) {
-      console.log("Dropping");
       const wateringcanPosition = $imgElement.position();
       const startV = wateringcanPosition.top + Math.random() * 20 + 60;
       const startH = wateringcanPosition.left + Math.random() * 20 - 10;
@@ -684,7 +711,7 @@ $(document).ready(function () {
     $("#inventoryOakLog").show();
     $("#number").show();
     numberOfLogs++;
-    $("#number").text(numberOfLogs);
+    $("#number").text(String(numberOfLogs));
     $(this).hide();
   });
 });

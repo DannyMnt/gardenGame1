@@ -122,20 +122,31 @@ body {
   display: none;
 }
 
-#numberOfCrafts {
-  color: white;
-  font-size: 20px;
-  position: absolute;
-  bottom: 46%;
-  z-index: 10;
-  width: 3rem;
-  display: none;
-}
-
 #grass {
   position: absolute;
   bottom: 0;
   height: 8%;
+}
+
+.primaryItem{
+  position: fixed;
+  left: 0.7%;
+  padding-top: 0.5%;
+  width: 2%;
+}
+
+.secondaryItem{
+  position: fixed;
+  left: 3.8%;
+  padding-top: 1.4%;
+  width: 1.5%;
+}
+
+.thirdItem{
+  position: fixed;
+  left: 6.3%;
+  padding-top: 1.4%;
+  width: 1.5%;
 }
 
 #oaklog1 {
@@ -208,6 +219,60 @@ body {
   width: 3rem;
 }
 
+#inventoryOakPlank {
+  position: absolute;
+  bottom: 0.5rem;
+  left: calc(50% + 120px);
+  transform: translate(-50%);
+  z-index: 10;
+  width: 3rem;
+  display: none;
+}
+
+#inventoryOakPlankNumber {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  bottom: -1rem;
+  left: calc(56.5%);
+  transform: translate(+20%);
+  z-index: 10;
+  width: 3rem;
+  display: none;
+}
+
+#inventoryStick{
+  position: absolute;
+  bottom: 0.5rem;
+  left: calc(50% + 180px);
+  transform: translate(-50%);
+  z-index: 10;
+  width: 3rem;
+  display: none;
+}
+
+#inventoryStickNumber {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  bottom: -1rem;
+  left: calc(60%);
+  transform: translate(+20%);
+  z-index: 10;
+  width: 3rem;
+  display: none;
+}
+
+#inventoryWoodenSword{
+  position: absolute;
+  bottom: 0;
+  left: calc(50% + 240px);
+  transform: translate(-50%);
+  z-index: 10;
+  width: 3rem;
+  display: none;
+}
+
 #mushroomNumber {
   color: white;
   font-size: 20px;
@@ -220,11 +285,32 @@ body {
   display: none;
 }
 
-#craftingTableGrid {
+#crafting{
   position: fixed;
-  top: 35%;
+  bottom: 40%;
   display: none;
-  z-index: 3;
+}
+
+.primaryBox{
+  width: 60px;
+}
+
+.secondaryBox{
+  width: 40px;
+}
+
+#plankCount1{
+  position: fixed;
+  left: 2%;
+  top: 44%;
+  color: white;
+}
+
+#plankCount2{
+  position: fixed;
+  left: 7.5%;
+  top: 56.5%;
+  color: white;
 }
 
 body {
