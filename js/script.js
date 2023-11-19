@@ -239,7 +239,13 @@ $(document).ready(function () {
   }
 
   moveCowRight();
+
+  
+  
 });
+
+
+
 
 function flipWebsite() {
   isFlipped = !isFlipped;
@@ -524,7 +530,7 @@ $(document).ready(function () {
         left: "calc(50% - 240px)",
       });
     }
-
+    
     if (event.key === "2") {
       toolSelected = "axe";
       $("#net-image").show();
@@ -532,7 +538,11 @@ $(document).ready(function () {
       $imgElement.css({
         width: "5rem",
       });
+     
+      
+        
       $("#tree").click(function () {
+        if(toolSelected === "axe") {
         $("#tree").hide();
         oaklogs.forEach(function (item) {
           $(item).show();
@@ -545,13 +555,15 @@ $(document).ready(function () {
             });
           }
         }
+      }
       });
+      
     }
     if (event.key === "3") {
       toolSelected = "log";
     }
 
-    let mushroomCount = 0;
+    
     if (event.key === "4") {
       toolSelected = "scissors";
       $("#net-image").show();
@@ -564,32 +576,37 @@ $(document).ready(function () {
         left: "calc(50% - 60px)",
       });
 
-      let timeout = 0;
+      
     }
-    $("#mooshroom").click(function () {
-      // Check if the scissors are currently selected
-      if (
-        $("#net-image").is(":visible") &&
-        $("#mooshroom").attr("src") === "images/mooshroom.png"
-      ) {
-        $("#mooshroom").attr("src", "images/cow.png");
-        mushroomCount++;
-        console.log(mushroomCount);
-        $("#inventoryMushroom").show();
-        $("#mushroomNumber").show();
-        $("#mushroomNumber").text(mushroomCount);
-        clearTimeout(timeout);
-        timeout = setTimeout(function () {
-          $("#mooshroom").attr("src", "images/mooshroom.png");
-        }, getRandomIntFromRange(10000, 30000));
-      }
-    });
+
+    if(toolSelected === "scissors"){
+      let timeout = 0;
+      $("#mooshroom").click(function () {
+        // Check if the scissors are currently selected
+        if (
+          $("#net-image").is(":visible") &&
+          $("#mooshroom").attr("src") === "images/mooshroom.png"
+        ) {
+          $("#mooshroom").attr("src", "images/cow.png");
+          mushroomCount++;
+          console.log(mushroomCount);
+          $("#inventoryMushroom").show();
+          $("#mushroomNumber").show();
+          $("#mushroomNumber").text(mushroomCount);
+          clearTimeout(timeout);
+          timeout = setTimeout(function () {
+            $("#mooshroom").attr("src", "images/mooshroom.png");
+          }, getRandomIntFromRange(10000, 30000));
+        }
+      });
+  }  
+    
 
     if (event.key === "5") {
       toolSelected = "mushroom";
     }
-    $(document).keypress(function (event2) {
-      if (event2.key === "f" && toolSelected === "mushroom") {
+    
+    if (event.key === "f" && toolSelected === "mushroom") {
         mushroomCount--;
         console.log(mushroomCount);
         if (mushroomCount > 0) {
@@ -601,7 +618,7 @@ $(document).ready(function () {
 
         flipWebsite();
       }
-    });
+    
 
     // coded by Luca & Jan
     if (event.key === "6") {
