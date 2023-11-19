@@ -95,7 +95,9 @@ $("#apple3").click(function () {
 function getRandomIntFromRange(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
+let mushroomCount = 0;
+let isFlipped = false;
+let toolSelected = "net";
 
 $(document).ready(function () {
   //getting the width and height of the butterfly picture so it doesnt go outside the screen
@@ -117,27 +119,33 @@ function generateNewPos(){
   const curPosX = $("#butterfly").offset().left;
   const curPosY = $("#butterfly").offset().top;
 
+  let flipMultiplier = (isFlipped)? 100 : 1;
 
-  let newPosX = curPosX;
-  let newPosY = curPosY;
-  let movementX = 0;
-  let movementY = 0;
-
+  let newPosX = (curPosX > 0)? curPosX: Math.abs(curPosX);
+  let newPosY = (curPosY > 0)? curPosY: Math.abs(curPosY);
+  let movementX = getRandomIntFromRange(-movementAmount,movementAmount);
+  let movementY = getRandomIntFromRange(-movementAmount,movementAmount) * flipMultiplier;
+  
   //generate movement and check if its not leaving the screen
-  while(true){
-    movementX = getRandomIntFromRange(-movementAmount,movementAmount);
-    movementY = getRandomIntFromRange(-movementAmount,movementAmount);
-    
-    if(isInBounds(newPosX + movementX, newPosY + movementY)){
-      break;
+  console.log(newPosX, newPosY, movementX, movementY);
+    while(true){
+      
+      if(isInBounds(newPosX + movementX, newPosY + movementY)){
+        break;
+      }
+      movementX = getRandomIntFromRange(-movementAmount,movementAmount);
+      movementY = getRandomIntFromRange(-movementAmount,movementAmount) * flipMultiplier;
+      
     }
-  }
     newPosX += movementX;
   
     newPosY += movementY;
+    return [newPosX,newPosY];
+  }
+    
   
-  return [newPosX,newPosY];
-}
+  
+
 
 // check if a certain position is not outside the screen
 function isInBounds(posX, posY){
@@ -218,7 +226,7 @@ $(document).ready(function () {
 
   
 });
-let isFlipped = false;
+
 
 function flipWebsite(){
   isFlipped = !isFlipped;
@@ -456,6 +464,7 @@ $(document).ready(function () {
     }
     navSelection(+event.key);
     if (event.key === "1") {
+      toolSelected = "net";
       $("#net-image").show();
       $imgElement.attr("src", "../images/net.png");
       $imgElement.css({
@@ -467,6 +476,7 @@ $(document).ready(function () {
     }
 
     if (event.key === "2") {
+      toolSelected = "axe";
       $("#net-image").show();
       $imgElement.attr("src", "../images/axe.png");
       $imgElement.css({
@@ -494,7 +504,12 @@ $(document).ready(function () {
         })
       })
     }
+    if(event.key === "3"){
+      toolSelected = "log";
+    }
+
     if(event.key === "4"){
+      toolSelected = "scissors";
       $("#net-image").show();
       $imgElement.attr("src", "../images/scissors.png");
       $imgElement.css({
@@ -506,7 +521,7 @@ $(document).ready(function () {
       });
     
       let timeout = 0;
-    
+      
 
       $("#mooshroom").click(function () {
         // Check if the scissors are currently selected
@@ -526,29 +541,25 @@ $(document).ready(function () {
         }
 
     if(event.key ==="5"){
+      toolSelected = "mushroom";
+    }
+
+    if(event.key === "f" && toolSelected === "mushroom"){
+      mushroomCount--;
+      console.log(mushroomCount);
+      if(mushroomCount > 0){
+        $("#mushroomNumber").text(mushroomCount);
+      }else{
+        $("#inventoryMushroom").hide();
+         $("#mushroomNumber").hide();
+      }
+          
+       flipWebsite();
+          
+    }
       
-      $(document).keypress(function (event){
-        if(event.key === "f"){
-          mushroomCount--;
-          console.log(mushroomCount);
-          if(mushroomCount > 0){
-            $("#mushroomNumber").text(mushroomCount);
-          }else{
-            $("#inventoryMushroom").hide();
-              $("#mushroomNumber").hide();
-          }
-          flipWebsite();
-        }
-      });
-      $("#mooshroom").click(function(){
-        
-        if ($("#mooshroom").attr("src") === "images/mooshroom.png"){
-          $("#mooshroom").attr("src", "../images/cow.png");
-          clearTimeout(timeout);
-          timeout = setTimeout(function(){$("#mooshroom").attr("src", "images/mooshroom.png");},getRandomIntFromRange(10000,30000));
-      } 
-      });
-    } 
+      
+     
   });
   $(".oaklog").click(function(){
     $("#inventoryOakLog").show();
