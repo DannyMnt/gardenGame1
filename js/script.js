@@ -6,6 +6,9 @@ const apples = ["#apple1", "#apple2", "#apple3"];
 const appleInBasket = [false, false, false];
 const oaklogs = ["#oaklog1", "#oaklog2", "#oaklog3"];
 var treeFallen = false;
+var netEquiped = true;
+var temp;
+
 oaklogs.forEach(function(item){
   $(item).hide();
 })
@@ -195,7 +198,8 @@ const height = $(document).height() - butterflyHeight;
 moveImg();
 
 $("#butterfly").mouseenter(function () {
-  teleportImg();
+  if(netEquiped)
+    teleportImg();
 }).mouseleave(function () {
   moveImg();
 });
@@ -452,19 +456,33 @@ $(document).ready(function () {
   });
 
   $(document).keypress(function (event) {
+    navSelection(+event.key);
     if(event.key === "e"){
+      netEquiped = false;
       if(showCrafting == false)
         showCrafting = true;
       else
         showCrafting = false;
       if(showCrafting == true)
         $("#craftingTableGrid").show();
-      else
+      else{
         $("#craftingTableGrid").hide();
+        $("#oakPlank").hide();
+      }
+      $(document).keypress(function(event2){
+        if(event2.key === "3" && showCrafting == true){
+          console.log(numberOfLogs);
+          if(numberOfLogs >= 0)
+            $("#oakPlank").show()
+        }
+      })
     }
-    navSelection(+event.key);
     if (event.key === "1") {
+<<<<<<< Updated upstream
       toolSelected = "net";
+=======
+      netEquiped = true;
+>>>>>>> Stashed changes
       $("#net-image").show();
       $imgElement.attr("src", "../images/net.png");
       $imgElement.css({
@@ -476,7 +494,11 @@ $(document).ready(function () {
     }
 
     if (event.key === "2") {
+<<<<<<< Updated upstream
       toolSelected = "axe";
+=======
+      netEquiped = false;
+>>>>>>> Stashed changes
       $("#net-image").show();
       $imgElement.attr("src", "../images/axe.png");
       $imgElement.css({
@@ -495,21 +517,20 @@ $(document).ready(function () {
             })
           }
         }
-        birds.forEach(function(item){
-          var rand = Math.floor(Math.random() * 90)
-          $(item).animate({
-            top: -10 + "%",
-            left: rand + "%"
-          }, 2000)
-        })
       })
     }
+<<<<<<< Updated upstream
     if(event.key === "3"){
       toolSelected = "log";
     }
 
     if(event.key === "4"){
       toolSelected = "scissors";
+=======
+    let mushroomCount = 0;
+    if(event.key === "4"){
+      netEquiped = false;
+>>>>>>> Stashed changes
       $("#net-image").show();
       $imgElement.attr("src", "../images/scissors.png");
       $imgElement.css({
@@ -541,6 +562,7 @@ $(document).ready(function () {
         }
 
     if(event.key ==="5"){
+<<<<<<< Updated upstream
       toolSelected = "mushroom";
     }
 
@@ -560,6 +582,31 @@ $(document).ready(function () {
       
       
      
+=======
+      netEquiped = false;
+      $(document).keypress(function (event){
+        if(event.key === "f"){
+          mushroomCount--;
+          console.log(mushroomCount);
+          if(mushroomCount > 0){
+            $("#mushroomNumber").text(mushroomCount);
+          }else{
+            $("#inventoryMushroom").hide();
+              $("#mushroomNumber").hide();
+          }
+          flipWebsite();
+        }
+      });
+      $("#mooshroom").click(function(){
+        
+        if ($("#mooshroom").attr("src") === "images/mooshroom.png"){
+          $("#mooshroom").attr("src", "../images/cow.png");
+          clearTimeout(timeout);
+          timeout = setTimeout(function(){$("#mooshroom").attr("src", "images/mooshroom.png");},getRandomIntFromRange(10000,30000));
+      } 
+      });
+    } 
+>>>>>>> Stashed changes
   });
   $(".oaklog").click(function(){
     $("#inventoryOakLog").show();
