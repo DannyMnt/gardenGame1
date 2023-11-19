@@ -8,6 +8,10 @@ const oaklogs = ["#oaklog1", "#oaklog2", "#oaklog3"];
 var treeFallen = false;
 var temp;
 let isRotated = false;
+const screenWidth = $(window).width();
+$("#craftingTableGrid").css({
+  left: screenWidth / 2.5
+})
 
 oaklogs.forEach(function (item) {
   $(item).hide();
@@ -18,7 +22,6 @@ $("#basketfront").css("z-index", "3");
 
 $(document).ready(function () {
   // Clone dirt block until the full screen width is covered
-  const screenWidth = $(window).width();
   var value = 4;
   for (var i = 0; i < screenWidth; i += 70) {
     var clone = $("#grass").clone();
@@ -28,6 +31,7 @@ $(document).ready(function () {
     value += 4;
   }
 
+  //Positioning the apples randomly in the tree
   apples.forEach(function (item) {
     var ranLeft = Math.floor(Math.random() * 20);
     var ranTop = Math.floor(Math.random() * 10);
@@ -38,6 +42,8 @@ $(document).ready(function () {
     });
   });
 });
+
+//Apples pickup animation
 
 function rotateApple(apple) {
   $(apple).css("transform", "rotate(20deg)");
@@ -59,7 +65,7 @@ $("#apple1").click(function () {
     $("#apple1").animate({
       top: $(".basket").position().top + 160 + "px",
       left: $(".basket").position().left + 40 + "px",
-    });
+    });//specific basket coordinates for every apple 
     $("#apple1").css("transform", "rotate(0deg)");
   }, delay);
   appleInBasket[0] = true;
@@ -486,15 +492,25 @@ $(document).ready(function () {
       toolSelected == "craftingTable";
       if (showCrafting == false) showCrafting = true;
       else showCrafting = false;
-      if (showCrafting == true) $("#craftingTableGrid").show();
+      if (showCrafting == true) 
+        $("#craftingTableGrid").show();
       else {
         $("#craftingTableGrid").hide();
         $("#oakPlank").hide();
+        $("numberOfCrafts").hide();
       }
       $(document).keypress(function (event2) {
         if (event2.key === "3" && showCrafting == true) {
-          console.log(numberOfLogs);
-          if (numberOfLogs >= 0) $("#oakPlank").show();
+          if (numberOfLogs >= 0) {
+            $("#oakPlank").show();
+            $("#oakPlank").css({
+              left: screenWidth / 1.7 + "px",
+            })
+            $("#numberOfCrafts").show();
+            $("#numberOfCrafts").css({
+              left: screenWidth / 1.63 + "px",
+            })
+          }
         }
       });
     }

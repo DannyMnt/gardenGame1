@@ -36,6 +36,7 @@ body {
   position: absolute;
   z-index: 10;
   display: block !important;
+  z-index: 0;
 }
 
 #net-image {
@@ -54,9 +55,9 @@ body {
 
 #tree {
   position: fixed;
-  bottom: -15%;
-  left: 40%;
-  width: 70%;
+  bottom: 0%;
+  left: 55%;
+  width: 30%;
 }
 
 .basket {
@@ -121,6 +122,16 @@ body {
   display: none;
 }
 
+#numberOfCrafts {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  bottom: 46%;
+  z-index: 10;
+  width: 3rem;
+  display: none;
+}
+
 #grass {
   position: absolute;
   bottom: 0;
@@ -156,10 +167,11 @@ body {
 }
 
 #oakPlank {
-  position: absolute;
+  position: fixed;
   height: 5%;
-  bottom: 8%;
+  bottom: 48%;
   display: none;
+  z-index: 4;
 }
 
 #inventoryScissors {
@@ -209,15 +221,10 @@ body {
 }
 
 #craftingTableGrid {
-  position: absolute;
-  left: 40%;
+  position: fixed;
   top: 35%;
   display: none;
   z-index: 3;
-}
-
-#mushroom {
-  position: absolute;
 }
 
 body {
@@ -232,7 +239,7 @@ body {
   position: relative;
   background-color: #007bff;
   color: white;
-  padding: 10px 20px;
+  padding: 20px 20px;
   border: teal;
   cursor: pointer;
 }
