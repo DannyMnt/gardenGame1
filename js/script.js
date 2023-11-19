@@ -732,3 +732,8 @@ $(document).ready(function () {
     $(this).hide();
   });
 });
+
+
+
+// Code ownership is not limited to the names above said code
+// We added code everywhere
