@@ -1,0 +1,128 @@
+$(document).ready(function () {
+  let clickCount = 0;
+
+  $(".waterdrop").hide();
+  $("#wateringcan").click(function () {
+$(document).mousemove(function(event) {
+          $("#wateringcan").css({
+            top: event.pageY - 25,
+            left: event.pageX - 25
+          });// do first click and second click using let clicks be 0;
+        });
+$(document).mouseup(function() {
+          $(document).off('mousemove');
+
+          $(this).css("transform", "rotate(0deg)");
+          $(".waterdrop").hide();
+          $("#wateringcan").css({
+            top: 60 + "%",
+            left: 40 + "%",
+          });
+
+        });
+
+  });
+
+  $("#wateringcan").click(function () {
+    clickCount++;
+    if(clickCount==1)pourWaterdrops();
+    if (clickCount % 2 === 1) {
+      $(this).css("transform", "rotate(-45deg)");
+      $(".waterdrop").show();
+      $("#wateringcan").click(function() {
+        
+      });
+    
+    } else {
+      $(this).css("transform", "rotate(0deg)");
+      $(".waterdrop").hide();
+      $("#wateringcan").css({
+        top: 60 + "%",
+        left: 40 + "%",
+        
+        
+      });
+
+    }
+  });
+
+  var drops = [];
+  for (var i = 0; i < 3; i++) {
+    drops.push($(".waterdrop").eq(i));
+  }
+
+  function pourWaterdrops() {
+    for (let i = 0; i < drops.length; i++) {
+      setTimeout(function () {
+        pour(drops[i]);
+      }, i * 500); // Delay each animation by 500ms
+    }
+  }
+
+  function pour(waterdrop) {
+    const wateringcanPosition = $("#wateringcan").position();
+    const startV = wateringcanPosition.top + Math.random() * 20 + 60;
+    const startH = wateringcanPosition.left + Math.random() * 20 - 10;
+    const speed = Math.random() * 1200 + 800;
+    const endV = 2000;
+
+    waterdrop.css({
+      top: startV + "px",
+      left: startH + "px",
+      visibility: "visible",
+    });
+
+    $({
+      pos: startV,
+    }).animate(
+      {
+        pos: endV,
+      },
+      {
+        duration: speed,
+        step: function (now) {
+          waterdrop.css({
+            top: now + "px",
+          });
+        },
+        complete: function () {
+          waterdrop.css({
+            visibility: "hidden",
+          });
+          pour(waterdrop);
+        },
+      }
+    );
+  }
+});
+
+$(document).ready(function() {
+  updateBackgroundColor();
+  setInterval(updateBackgroundColor, 60000); // Update background every minute
+});
+
+function updateBackgroundColor() {
+  var currentHour = new Date().getHours();
+  var currentColor = getBackgroundColor(currentHour);
+  $('body').css('background-color', currentColor);
+}
+
+function getBackgroundColor(hour) {
+  
+  if (hour < 6) {
+    return '#FFF0BD'; 
+  } else if (hour < 9) {
+    return '#F0E68C'; 
+  } else if (hour < 12) {
+    return '#83C1DE '; 
+  } else if (hour < 15) {
+    return '##87CEEB '; 
+  } else if (hour < 18) {
+    return '#FF7F50'; 
+  } else if (hour < 21) {
+    return '#F7CAC9'; 
+  } else {
+    return '#FF9999';
+  }
+}
+
