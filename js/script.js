@@ -6,6 +6,9 @@ const apples = ["#apple1", "#apple2", "#apple3"];
 const appleInBasket = [false, false, false];
 const oaklogs = ["#oaklog1", "#oaklog2", "#oaklog3"];
 var treeFallen = false;
+var netEquiped = true;
+var temp;
+
 oaklogs.forEach(function(item){
   $(item).hide();
 })
@@ -127,7 +130,6 @@ function generateNewPos(){
   let movementY = getRandomIntFromRange(-movementAmount,movementAmount) * flipMultiplier;
   
   //generate movement and check if its not leaving the screen
-  console.log(newPosX, newPosY, movementX, movementY);
     while(true){
       
       if(isInBounds(newPosX + movementX, newPosY + movementY)){
@@ -195,7 +197,8 @@ const height = $(document).height() - butterflyHeight;
 moveImg();
 
 $("#butterfly").mouseenter(function () {
-  teleportImg();
+  if(netEquiped)
+    teleportImg();
 }).mouseleave(function () {
   moveImg();
 });
@@ -469,17 +472,27 @@ $(document).ready(function () {
   });
 
   $(document).keypress(function (event) {
+    navSelection(+event.key);
     if(event.key === "e"){
+      netEquiped = false;
       if(showCrafting == false)
         showCrafting = true;
       else
         showCrafting = false;
       if(showCrafting == true)
         $("#craftingTableGrid").show();
-      else
+      else{
         $("#craftingTableGrid").hide();
+        $("#oakPlank").hide();
+      }
+      $(document).keypress(function(event2){
+        if(event2.key === "3" && showCrafting == true){
+          console.log(numberOfLogs);
+          if(numberOfLogs >= 0)
+            $("#oakPlank").show()
+        }
+      })
     }
-    navSelection(+event.key);
     if (event.key === "1") {
       toolSelected = "net";
       $("#net-image").show();
@@ -512,13 +525,6 @@ $(document).ready(function () {
             })
           }
         }
-        birds.forEach(function(item){
-          var rand = Math.floor(Math.random() * 90)
-          $(item).animate({
-            top: -10 + "%",
-            left: rand + "%"
-          }, 2000)
-        })
       })
     }
     if(event.key === "3"){
@@ -527,6 +533,9 @@ $(document).ready(function () {
 
     if(event.key === "4"){
       toolSelected = "scissors";
+    let mushroomCount = 0;
+    if(event.key === "4"){
+      netEquiped = false;
       $("#net-image").show();
       $imgElement.attr("src", "../images/scissors.png");
       $imgElement.css({
@@ -574,10 +583,8 @@ $(document).ready(function () {
        flipWebsite();
           
     }
-      
-      
-     
-  });
+  }
+});
   $(".oaklog").click(function(){
     $("#inventoryOakLog").show();
     $("#number").show();

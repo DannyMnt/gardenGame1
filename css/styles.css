@@ -158,6 +158,14 @@ body {
   left: 72.5%;
   bottom: 0%;
 }
+
+#oakPlank{
+  position: absolute;
+  height: 5%;
+  bottom: 8%;
+  display: none;
+}
+
 #inventoryScissors{
   position: absolute;
   bottom: .5rem;
