@@ -130,21 +130,21 @@ body {
 
 .primaryItem{
   position: fixed;
-  left: 0.7%;
+  left: 0.5%;
   padding-top: 0.5%;
   width: 2%;
 }
 
 .secondaryItem{
   position: fixed;
-  left: 3.8%;
+  left: 3.6%;
   padding-top: 1.4%;
   width: 1.5%;
 }
 
 .thirdItem{
   position: fixed;
-  left: 6.3%;
+  left: 5.8%;
   padding-top: 1.4%;
   width: 1.5%;
 }
@@ -286,7 +286,7 @@ body {
 }
 
 #crafting{
-  position: fixed;
+  position: absolute;
   bottom: 40%;
   display: none;
 }
@@ -308,7 +308,7 @@ body {
 
 #plankCount2{
   position: fixed;
-  left: 7.5%;
+  left: 7%;
   top: 56.5%;
   color: white;
 }

@@ -40,72 +40,69 @@ $(document).ready(function () {
       "z-index": "2",
     });
   });
-});
+  //Apples pickup animation
 
-//Apples pickup animation
-
-function rotateApple(apple) {
-  $(apple).css("transform", "rotate(20deg)");
-  setTimeout(function () {
-    $(apple).css("transform", "rotate(-20deg)");
-  }, 200);
-  setTimeout(function () {
+  function rotateApple(apple) {
     $(apple).css("transform", "rotate(20deg)");
-  }, 400);
-  setTimeout(function () {
-    $(apple).css("transform", "rotate(20deg)");
-  }, 600);
-}
+    setTimeout(function () {
+      $(apple).css("transform", "rotate(-20deg)");
+    }, 200);
+    setTimeout(function () {
+      $(apple).css("transform", "rotate(20deg)");
+    }, 400);
+    setTimeout(function () {
+      $(apple).css("transform", "rotate(20deg)");
+    }, 600);
+  }
 
-$("#apple1").click(function () {
-  var delay = treeFallen ? 10 : 600;
-  if (treeFallen == false) rotateApple("#apple1");
-  setTimeout(function () {
-    $("#apple1").animate({
-      top: $(".basket").position().top + 160 + "px",
-      left: $(".basket").position().left + 40 + "px",
-    });//specific basket coordinates for every apple 
-    $("#apple1").css("transform", "rotate(0deg)");
-  }, delay);
-  appleInBasket[0] = true;
-});
+  $("#apple1").click(function () {
+    var delay = treeFallen ? 10 : 600;
+    if (treeFallen == false) rotateApple("#apple1");
+    setTimeout(function () {
+      $("#apple1").animate({
+        top: $(".basket").position().top + 160 + "px",
+        left: $(".basket").position().left + 40 + "px",
+      }); //specific basket coordinates for every apple
+      $("#apple1").css("transform", "rotate(0deg)");
+    }, delay);
+    appleInBasket[0] = true;
+  });
 
-$("#apple2").click(function () {
-  var delay = treeFallen ? 10 : 600;
-  if (treeFallen == false) rotateApple("#apple2");
-  setTimeout(function () {
-    $("#apple2").animate({
-      top: $(".basket").position().top + 150 + "px",
-      left: $(".basket").position().left + 60 + "px",
-    });
-    $("#apple2").css("transform", "rotate(0deg)");
-  }, delay);
-  appleInBasket[1] = true;
-});
+  $("#apple2").click(function () {
+    var delay = treeFallen ? 10 : 600;
+    if (treeFallen == false) rotateApple("#apple2");
+    setTimeout(function () {
+      $("#apple2").animate({
+        top: $(".basket").position().top + 150 + "px",
+        left: $(".basket").position().left + 60 + "px",
+      });
+      $("#apple2").css("transform", "rotate(0deg)");
+    }, delay);
+    appleInBasket[1] = true;
+  });
 
-$("#apple3").click(function () {
-  var delay = treeFallen ? 10 : 600;
-  if (treeFallen == false) rotateApple("#apple3");
-  setTimeout(function () {
-    $("#apple3").animate({
-      top: $(".basket").position().top + 170 + "px",
-      left: $(".basket").position().left + 80 + "px",
-    });
-    $("#apple3").css("transform", "rotate(0deg)");
-  }, delay);
-  appleInBasket[2] = true;
-});
+  $("#apple3").click(function () {
+    var delay = treeFallen ? 10 : 600;
+    if (treeFallen == false) rotateApple("#apple3");
+    setTimeout(function () {
+      $("#apple3").animate({
+        top: $(".basket").position().top + 170 + "px",
+        left: $(".basket").position().left + 80 + "px",
+      });
+      $("#apple3").css("transform", "rotate(0deg)");
+    }, delay);
+    appleInBasket[2] = true;
+  });
 
-//Coded by Tadeas (butterfly)
-// returns random number within range
-function getRandomIntFromRange(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-let mushroomCount = 0;
-let isFlipped = false;
-let toolSelected = "net";
+  //Coded by Tadeas (butterfly)
+  // returns random number within range
+  function getRandomIntFromRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  let mushroomCount = 0;
+  let isFlipped = false;
+  let toolSelected = "net";
 
-$(document).ready(function () {
   //getting the width and height of the butterfly picture so it doesnt go outside the screen
   const butterflyWidth = $("#butterfly").width();
   const butterflyHeight = $("#butterfly").height();
@@ -213,9 +210,7 @@ $(document).ready(function () {
     .mouseleave(function () {
       if (toolSelected === "net") moveImg();
     });
-});
 
-$(document).ready(function () {
   //moves the cow right
   function moveCowRight() {
     $("#mooshroom").css({ transform: "scaleX(1)" });
@@ -235,25 +230,24 @@ $(document).ready(function () {
       }, 1000);
     });
   }
+
   moveCowRight();
-});
 
-function flipWebsite() {
-  isFlipped = !isFlipped;
-  $("body").toggleClass("flip");
+  function flipWebsite() {
+    isFlipped = !isFlipped;
+    $("body").toggleClass("flip");
 
-  setTimeout(function () {
-    if (isFlipped) {
-      $("body").toggleClass("flip");
-      isFlipped = false;
-    }
-  }, getRandomIntFromRange(15000, 25000));
-}
+    setTimeout(function () {
+      if (isFlipped) {
+        $("body").toggleClass("flip");
+        isFlipped = false;
+      }
+    }, getRandomIntFromRange(15000, 25000));
+  }
 
-//Coded by Luca
+  //Coded by Luca
 
-$(document).ready(function () {
-  let clickCount = 0;// using a counter to monitor state
+  let clickCount = 0; // using a counter to monitor state
   $(".waterdrop").hide(); // avoiding having waterdrops in the corner
   $("#wateringcan").click(function () {
     $(document).mouseup(function () {
@@ -261,7 +255,8 @@ $(document).ready(function () {
 
       $(this).css("transform", "rotate(0deg)");
       $(".waterdrop").hide();
-      $("#wateringcan").css({      // holding it in place
+      $("#wateringcan").css({
+        // holding it in place
         top: 60 + "%",
         left: 40 + "%",
       });
@@ -270,7 +265,7 @@ $(document).ready(function () {
 
   $("#wateringcan").click(function () {
     clickCount++;
-    if (clickCount == 1) pourWaterdrops();   // waterdrops appear and fall
+    if (clickCount == 1) pourWaterdrops(); // waterdrops appear and fall
     if (clickCount % 2 === 1) {
       $(this).css("transform", "rotate(-45deg)");
       $(".waterdrop").show();
@@ -286,15 +281,17 @@ $(document).ready(function () {
   });
 
   var drops = [];
-  for (var i = 0; i < 3; i++) {              // separating divs
+  for (var i = 0; i < 3; i++) {
+    // separating divs
     drops.push($(".waterdrop").eq(i));
   }
 
   function pourWaterdrops() {
     for (let i = 0; i < drops.length; i++) {
-      setTimeout(function () {                 // separating divs
+      setTimeout(function () {
+        // separating divs
         pour(drops[i]);
-      }, i * 500);          // Delay 
+      }, i * 500); // Delay
     }
   }
 
@@ -333,92 +330,88 @@ $(document).ready(function () {
       }
     );
   }
-});
 
-$(document).ready(function () {
   updateBackgroundColor();
   setInterval(updateBackgroundColor, 60000); // Simple background changer based on device time
-});
 
-function updateBackgroundColor() {
-  var currentHour = new Date().getHours();
-  var currentColor = getBackgroundColor(currentHour);
-  $("body").css("background-color", currentColor);
-}
-
-function getBackgroundColor(hour) {
-  if (hour < 6) {
-    return "#FFF0BD";
-  } else if (hour < 9) {
-    return "#F0E68C";
-  } else if (hour < 12) {
-    return "#83C1DE ";
-  } else if (hour < 15) {
-    return "##87CEEB ";
-  } else if (hour < 18) {
-    return "#FF7F50";
-  } else if (hour < 21) {
-    return "#F7CAC9";
-  } else {
-    return "#FF9999";
-  }
-}
-
-const helpButton = document.getElementById("help-button");
-const helpPopup = document.getElementById("help-popup");
-
-let isHelpPopupVisible = false;
- // realized our page was too complicated and implemented a small guide
-helpButton.addEventListener("click", () => {
-  if (!isHelpPopupVisible) {
-    helpPopup.style.display = "block";
-    isHelpPopupVisible = true;
-  } else {
-    helpPopup.style.display = "none";
-    isHelpPopupVisible = false;
-  }
-});
-
-//Coded by Jan
-
-const navSelection = (num) => {
-  switch (num) {
-    case 1:
-      temp = "calc(50% - 240px)";
-      break;
-    case 2:
-      temp = "calc(50% - 180px)";
-      break;
-    case 3:
-      temp = "calc(50% - 120px)";
-      break;
-    case 4:
-      temp = "calc(50% - 60px)";
-      break;
-    case 5:
-      temp = "calc(50%)";
-      break;
-    case 6:
-      temp = "calc(50% + 60px)";
-      break;
-    case 7:
-      temp = "calc(50% + 120px)";
-      break;
-    case 8:
-      temp = "calc(50% + 180px)";
-      break;
-    case 9:
-      temp = "calc(50% + 240px)";
-      break;
+  function updateBackgroundColor() {
+    var currentHour = new Date().getHours();
+    var currentColor = getBackgroundColor(currentHour);
+    $("body").css("background-color", currentColor);
   }
 
-  $("#minecraftNavSelected").css({
-    left: temp,
+  function getBackgroundColor(hour) {
+    if (hour < 6) {
+      return "#FFF0BD";
+    } else if (hour < 9) {
+      return "#F0E68C";
+    } else if (hour < 12) {
+      return "#83C1DE ";
+    } else if (hour < 15) {
+      return "##87CEEB ";
+    } else if (hour < 18) {
+      return "#FF7F50";
+    } else if (hour < 21) {
+      return "#F7CAC9";
+    } else {
+      return "#FF9999";
+    }
+  }
+
+  const helpButton = document.getElementById("help-button");
+  const helpPopup = document.getElementById("help-popup");
+
+  let isHelpPopupVisible = false;
+  // realized our page was too complicated and implemented a small guide
+  helpButton.addEventListener("click", () => {
+    if (!isHelpPopupVisible) {
+      helpPopup.style.display = "block";
+      isHelpPopupVisible = true;
+    } else {
+      helpPopup.style.display = "none";
+      isHelpPopupVisible = false;
+    }
   });
-  $("#net-image").hide();
-};
 
-$(document).ready(function () {
+  //Coded by Jan
+
+  const navSelection = (num) => {
+    switch (num) {
+      case 1:
+        temp = "calc(50% - 240px)";
+        break;
+      case 2:
+        temp = "calc(50% - 180px)";
+        break;
+      case 3:
+        temp = "calc(50% - 120px)";
+        break;
+      case 4:
+        temp = "calc(50% - 60px)";
+        break;
+      case 5:
+        temp = "calc(50%)";
+        break;
+      case 6:
+        temp = "calc(50% + 60px)";
+        break;
+      case 7:
+        temp = "calc(50% + 120px)";
+        break;
+      case 8:
+        temp = "calc(50% + 180px)";
+        break;
+      case 9:
+        temp = "calc(50% + 240px)";
+        break;
+    }
+
+    $("#minecraftNavSelected").css({
+      left: temp,
+    });
+    $("#net-image").hide();
+  };
+
   var prevX = 0; // Variable to store the previous x-coordinate
   var $imgElement = $("#net-image");
   $(document.body).on("mousemove", function (e) {
@@ -462,12 +455,12 @@ $(document).ready(function () {
 
   $(window).bind("mousewheel DOMMouseScroll", function (event) {
     if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
-       //scroll up
+      //scroll up
       number++;
-    if (number > 9) number = 1;
+      if (number > 9) number = 1;
     } else {
       number--;
-       //scroll down
+      //scroll down
       if (number <= 0) number = 9;
     }
     navSelection(number);
@@ -488,55 +481,54 @@ $(document).ready(function () {
       toolSelected == "craftingTable";
       if (showCrafting == false) showCrafting = true;
       else showCrafting = false;
-      if (showCrafting == true){
+      if (showCrafting == true) {
         $("#crafting").show();
-        $("#craftingStation1").click(function(){
-          if(numberOfLogs > 0){
+        $("#craftingStation1").click(function () {
+          if (numberOfLogs > 0) {
             numberOfLogs--;
             $("#number").text(String(numberOfLogs));
             numberOfPlanks += 4;
             $("#inventoryOakPlank").show();
             $("#inventoryOakPlankNumber").show();
-            $("#inventoryOakPlankNumber").text(String(numberOfPlanks))
-            if(numberOfLogs == 0){
+            $("#inventoryOakPlankNumber").text(String(numberOfPlanks));
+            if (numberOfLogs == 0) {
               $("#number").hide();
               $("#inventoryOakLog").hide();
             }
           }
-        })
-        $("#craftingStation2").click(function(){
-          if(numberOfPlanks > 0){
+        });
+        $("#craftingStation2").click(function () {
+          if (numberOfPlanks > 0) {
             numberOfPlanks -= 2;
             $("#inventoryOakPlankNumber").text(String(numberOfPlanks));
             $("#inventoryStick").show();
             numberOfSticks += 4;
             $("#inventoryStickNumber").show();
             $("#inventoryStickNumber").text(String(numberOfSticks));
-            if(numberOfPlanks == 0){
+            if (numberOfPlanks == 0) {
               $("#inventoryOakPlankNumber").hide();
               $("#inventoryOakPlank").hide();
             }
           }
-        })
-        $("#craftingStation3").click(function(){
-          if(numberOfPlanks >= 2 && numberOfSticks >= 1){
+        });
+        $("#craftingStation3").click(function () {
+          if (numberOfPlanks >= 2 && numberOfSticks >= 1) {
             numberOfPlanks -= 2;
             $("#inventoryOakPlankNumber").text(String(numberOfPlanks));
             numberOfSticks--;
             $("#inventoryStickNumber").text(String(numberOfSticks));
             $("#inventoryWoodenSword").show();
-            if(numberOfSticks == 0){
+            if (numberOfSticks == 0) {
               $("#inventoryStickNumber").hide();
               $("#inventoryStick").hide();
             }
-            if(numberOfPlanks == 0){
+            if (numberOfPlanks == 0) {
               $("#inventoryOakPlankNumber").hide();
               $("#inventoryOakPlank").hide();
             }
           }
-        })
-      }
-      else {
+        });
+      } else {
         $("#crafting").hide();
         $("#oakPlank").hide();
         $("numberOfCrafts").hide();
@@ -553,7 +545,7 @@ $(document).ready(function () {
         left: "calc(50% - 240px)",
       });
     }
-    
+
     if (event.key === "2") {
       toolSelected = "axe";
       $("#net-image").show();
@@ -561,32 +553,29 @@ $(document).ready(function () {
       $imgElement.css({
         width: "5rem",
       });
-     
-      
-        
+
       $("#tree").click(function () {
-        if(toolSelected === "axe") {
-        $("#tree").hide();
-        oaklogs.forEach(function (item) {
-          $(item).show();
-        });
-        treeFallen = true;
-        for (var i = 0; i < 3; i++) {
-          if (appleInBasket[i] == false) {
-            $(apples[i]).animate({
-              top: 87 + "%",
-            });
+        if (toolSelected === "axe") {
+          $("#tree").hide();
+          oaklogs.forEach(function (item) {
+            $(item).show();
+          });
+          treeFallen = true;
+          for (var i = 0; i < 3; i++) {
+            if (appleInBasket[i] == false) {
+              $(apples[i]).animate({
+                top: 87 + "%",
+              });
+            }
           }
         }
-      }
       });
-      
     }
+
     if (event.key === "3") {
       toolSelected = "log";
     }
 
-    
     if (event.key === "4") {
       toolSelected = "scissors";
       $("#net-image").show();
@@ -598,11 +587,9 @@ $(document).ready(function () {
       $("#minecraftNavSelected").css({
         left: "calc(50% - 60px)",
       });
-
-      
     }
 
-    if(toolSelected === "scissors"){
+    if (toolSelected === "scissors") {
       let timeout = 0;
       $("#mooshroom").click(function () {
         // Check if the scissors are currently selected
@@ -622,25 +609,23 @@ $(document).ready(function () {
           }, getRandomIntFromRange(10000, 30000));
         }
       });
-  }  
-    
+    }
 
     if (event.key === "5") {
       toolSelected = "mushroom";
     }
-    
-    if (event.key === "f" && toolSelected === "mushroom") {
-        mushroomCount--;
-        if (mushroomCount > 0) {
-          $("#mushroomNumber").text(mushroomCount);
-        } else {
-          $("#inventoryMushroom").hide();
-          $("#mushroomNumber").hide();
-        }
 
-        flipWebsite();
+    if (event.key === "f" && toolSelected === "mushroom") {
+      mushroomCount--;
+      if (mushroomCount > 0) {
+        $("#mushroomNumber").text(mushroomCount);
+      } else {
+        $("#inventoryMushroom").hide();
+        $("#mushroomNumber").hide();
       }
-    
+
+      flipWebsite();
+    }
 
     // coded by Luca & Jan
     if (event.key === "6") {
@@ -725,8 +710,6 @@ $(document).ready(function () {
     $(this).hide();
   });
 });
-
-
 
 // Code ownership is not limited to the names above said code
 // We added code everywhere
