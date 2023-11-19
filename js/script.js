@@ -14,7 +14,7 @@ oaklogs.forEach(function (item) {
 });
 var numberOfLogs = 0;
 var showCrafting = false;
-$("#basketfront").css("z-index", "3")
+$("#basketfront").css("z-index", "3");
 
 $(document).ready(function () {
   // Clone dirt block until the full screen width is covered
@@ -625,6 +625,7 @@ $(document).ready(function () {
     }
 
     function pour(waterdrop) {
+      console.log("Dropping");
       const wateringcanPosition = $imgElement.position();
       const startV = wateringcanPosition.top + Math.random() * 20 + 60;
       const startH = wateringcanPosition.left + Math.random() * 20 - 10;
